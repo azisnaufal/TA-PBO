@@ -13,7 +13,7 @@ import application.base.BaseView;
  */
 public class MenuView extends BaseView{
     public int menu(){
-        System.out.println("1. Pilihan 1");
+        System.out.println("1. Mahasiswa");
         System.out.println("2. Pilihan 2");
         System.out.print("Pilihan Anda : ");
         return scanner.nextInt();

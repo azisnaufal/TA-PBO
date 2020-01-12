@@ -5,6 +5,8 @@
  */
 package application.menu;
 
+import application.mahasiswa.MahasiswaController;
+
 /**
  *
  * @author oazisn
@@ -25,19 +27,23 @@ public class MenuController{
     }
     
     public void index(){
-        int menu = view.menu();
-        switch(menu){
-            case 1 : {
-                System.out.println("Anda memilih 1");
-                break;
-            }
-            case 2 : {
-                System.out.println("Anda memilih 2");
-                break;
-            }
-            default: {
-                System.out.println("Pilihan tidak tersedia!");
-                break;
+        boolean loop = true;
+        while(loop){
+            int menu = view.menu();
+            switch(menu){
+                case 1 : {
+                    loop = false;
+                    MahasiswaController.getInstance().index();
+                    break;
+                }
+                case 2 : {
+                    System.out.println("Anda memilih 2");
+                    break;
+                }
+                default: {
+                    System.out.println("Pilihan tidak tersedia!");
+                    break;
+                }
             }
         }
     }

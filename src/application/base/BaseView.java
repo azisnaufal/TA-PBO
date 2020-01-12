@@ -12,5 +12,9 @@ import java.util.Scanner;
  * @author oazisn
  */
 public class BaseView {
-    public Scanner scanner = new Scanner(System.in); 
+    public static Scanner scanner = new Scanner(System.in); 
+    
+    public void alertLoading(){
+        System.out.println("Sedang memproses...");
+    }
 }
