@@ -91,4 +91,5 @@ public class AnggotaView extends BaseView{
         System.out.println("Tekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
+    
 }

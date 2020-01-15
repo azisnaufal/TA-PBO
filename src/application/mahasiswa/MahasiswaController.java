@@ -50,7 +50,7 @@ public class MahasiswaController {
         }
     }
     
-    private void tambah(){
+    private void tambah() {
         Mahasiswa mahasiswa = view.form();
         view.alertLoading();
         List<Mahasiswa> mahasiswas = repo.get(mahasiswa.getNim());

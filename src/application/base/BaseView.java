@@ -14,11 +14,15 @@ import java.util.concurrent.TimeUnit;
 public class BaseView {
     public static Scanner scanner = new Scanner(System.in); 
     
-    public void alertLoading() throws InterruptedException{
+    public void alertLoading(){
         System.out.print("Sedang memproses");
         for (int i = 0; i < 5; i++) {
-            System.out.print(".");
-            TimeUnit.SECONDS.sleep(1);
+            try {
+                System.out.print(".");
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException ex) {
+     
+            }
         }
     }
 }

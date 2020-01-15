@@ -59,7 +59,7 @@ public class AnggotaController {
         String tahun;
         String bulan;
         String finallagi;
-        String id = Integer.toString(repos.getId_anggota());
+        String id = Integer.toString(repos.getId_anggota() + 1);
         
         if (id.length() == 1) {
             id = "00" + id;
