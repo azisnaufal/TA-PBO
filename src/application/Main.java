@@ -5,6 +5,7 @@
  */
 package application;
 
+import application.anggota.AnggotaController;
 import application.menu.MenuController;
 
 /**
@@ -18,7 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MenuController.getInstance().index();
+        AnggotaController.getInstance().index();
     }
     
 }
