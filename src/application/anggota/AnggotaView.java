@@ -6,14 +6,18 @@
 package application.anggota;
 
 import application.base.BaseView;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author Farhan Rafly Fahrezi
  */
 public class AnggotaView extends BaseView{
+    
     public Anggota form(){
         Anggota anggota = new Anggota();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
         
         String no_ktp;
         String nama;
@@ -22,14 +26,13 @@ public class AnggotaView extends BaseView{
         String ttl;
         String no_telepon;
         String alamat;
-        String id;
         
         scanner.nextLine();
         
-        System.out.print("Masukan iD : ");
-        id = scanner.nextLine();
-        anggota.setId_anggota(id);
         
+        System.out.println("");
+        System.out.println("Daftar Anggota");
+        System.out.println("===================");
         System.out.print("Masukan NO KTP : ");
         no_ktp = scanner.nextLine();
         anggota.setNo_KTP(no_ktp);
@@ -59,7 +62,7 @@ public class AnggotaView extends BaseView{
     }
     
     public int menu() {
-        System.out.println("1) Anggota");
+        System.out.println("1) Daftar Menjadi Anggota");
         System.out.println("0) Keluar");
         System.out.println(" ");
         System.out.print("Masukan Pilihan Anda : ");

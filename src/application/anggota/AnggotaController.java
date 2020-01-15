@@ -5,6 +5,8 @@
  */
 package application.anggota;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +52,30 @@ public class AnggotaController {
     
     public void tambah() {
         Anggota anggota = view.form();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        
+        String finalid;
+        String tahun;
+        String bulan;
+        String finallagi;
+        String id = Integer.toString(repos.getId_anggota());
+        
+        if (id.length() == 1) {
+            id = "00" + id;
+        } else if (id.length() == 2) {
+            id = "0" + id;
+        }
+        
+        finalid = simpleDateFormat.format(date);
+        System.out.println(finalid);
+        tahun = finalid.substring(6, 10);
+        bulan = finalid.substring(3, 5);
+        
+        finallagi = "KSB/" + tahun + bulan + "/" + id;
+        
+        anggota.setId_anggota(finallagi);
+        
         view.alertLoading();
         
 //        List<Anggota> anggotas = repos.get(anggota.getNo_KTP());

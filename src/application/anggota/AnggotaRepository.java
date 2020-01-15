@@ -69,4 +69,24 @@ public class AnggotaRepository {
         }
         return success;
     }
+    
+    public int getId_anggota() {
+        int temp = 0;
+        
+        String sql = "SELECT COUNT(no_KTP) AS countResult FROM Anggota";
+        
+        try {
+            Connection con = db.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()) {
+                temp = resultSet.getInt("countResult");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return temp;
+    }
 }
