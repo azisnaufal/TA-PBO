@@ -37,6 +37,9 @@ public class AnggotaController {
                 case 1:
                         this.tambah();
                     break;
+                case 0:
+                        System.exit(0);
+                    break;
                 default: {
                     System.out.println("Pilihan tidak tersedia");
                     break;
