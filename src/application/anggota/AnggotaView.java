@@ -21,8 +21,14 @@ public class AnggotaView extends BaseView{
         String tanggal_lahir;
         String ttl;
         String no_telepon;
+        String alamat;
+        String id;
         
         scanner.nextLine();
+        
+        System.out.print("Masukan iD : ");
+        id = scanner.nextLine();
+        anggota.setId_anggota(id);
         
         System.out.print("Masukan NO KTP : ");
         no_ktp = scanner.nextLine();
@@ -32,10 +38,14 @@ public class AnggotaView extends BaseView{
         nama = scanner.nextLine();
         anggota.setNama_lengkap(nama);
         
+        System.out.print("Masukan Alamat : ");
+        alamat = scanner.nextLine();
+        anggota.setAlamat(alamat);
+        
         System.out.print("Masukan Tempat Lahir : ");
         tempat_lahir = scanner.nextLine();
         
-        System.out.print("Masukan Tanggal Lahir (DD/MM/YYYY) :");
+        System.out.print("Masukan Tanggal Lahir (DD/MM/YYYY) : ");
         tanggal_lahir = scanner.nextLine();
         
         ttl = tempat_lahir.concat(", " + tanggal_lahir);
@@ -50,8 +60,11 @@ public class AnggotaView extends BaseView{
     
     public int menu() {
         System.out.println("1) Anggota");
+        System.out.println(" ");
+        System.out.print("Masukan Pilihan Anda : ");
+        int choice = scanner.nextInt();
         
-        return scanner.nextInt();
+        return choice;
     }
     
     public void alertKTPExist() {
