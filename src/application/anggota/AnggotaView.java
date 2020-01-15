@@ -60,6 +60,7 @@ public class AnggotaView extends BaseView{
     
     public int menu() {
         System.out.println("1) Anggota");
+        System.out.println("0) Keluar");
         System.out.println(" ");
         System.out.print("Masukan Pilihan Anda : ");
         int choice = scanner.nextInt();
