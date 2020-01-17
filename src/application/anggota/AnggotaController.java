@@ -59,21 +59,23 @@ public class AnggotaController {
         String tahun;
         String bulan;
         String finallagi;
-        String id = Integer.toString(repos.getId_anggota() + 1);
-        
-        if (id.length() == 1) {
-            id = "00" + id;
-        } else if (id.length() == 2) {
-            id = "0" + id;
-        }
+        String id;        
         
         finalid = simpleDateFormat.format(date);
         System.out.println(finalid);
         tahun = finalid.substring(6, 10);
         bulan = finalid.substring(3, 5);
         
+        id = Integer.toString(repos.getId_anggota(bulan, tahun) + 1);
+        if (id.length() == 1) {
+            id = "00" + id;
+        } else if (id.length() == 2) {
+            id = "0" + id;
+        }
+        
         finallagi = "KSB/" + tahun + bulan + "/" + id;
         
+        anggota.setBulan_masuk(bulan);
         anggota.setId_anggota(finallagi);
         
         view.alertLoading();

@@ -50,7 +50,7 @@ public class AnggotaRepository {
     
     public boolean insert(Anggota anggota) {
         boolean success = false;
-        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon) value(?,?,?,?,?,?)";
+        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon, bulan_daftar) value(?,?,?,?,?,?,?)";
         Connection con = db.getConnection();
         
         try {
@@ -61,6 +61,7 @@ public class AnggotaRepository {
             preparedStatement.setString(4, anggota.getAlamat());
             preparedStatement.setString(5, anggota.getTtl());
             preparedStatement.setString(6, anggota.getNomor_telepon());
+            preparedStatement.setString(7, anggota.getBulan_masuk());
             
             preparedStatement.execute();
             success = true;
@@ -70,14 +71,20 @@ public class AnggotaRepository {
         return success;
     }
     
-    public int getId_anggota() {
+    public int getId_anggota(String nama_bulan, String tahun) {
         int temp = 0;
+
+        // ksb/202001/001 
+        // where id_anggota = "ksb/202001/%" 
         
-        String sql = "SELECT COUNT(no_KTP) AS countResult FROM Anggota";
+        String query = "KSB/" + tahun + nama_bulan + "/%";
+        
+        String sql = "SELECT COUNT(no_KTP) AS countResult FROM Anggota WHERE id_anggota d ?";
         
         try {
             Connection con = db.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, query);
             
             ResultSet resultSet = preparedStatement.executeQuery();
             
@@ -89,4 +96,6 @@ public class AnggotaRepository {
         }
         return temp;
     }
+    
+    
 }

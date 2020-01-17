@@ -16,6 +16,15 @@ public class Anggota {
     private String alamat;
     private String ttl;
     private String nomor_telepon;
+    private String bulan_masuk;
+
+    public String getBulan_masuk() {
+        return bulan_masuk;
+    }
+
+    public void setBulan_masuk(String bulan_masuk) {
+        this.bulan_masuk = bulan_masuk;
+    }
 
     public String getId_anggota() {
         return id_anggota;
