@@ -5,6 +5,7 @@
  */
 package application.menu;
 
+import application.anggota.AnggotaController;
 import application.mahasiswa.MahasiswaController;
 
 /**
@@ -33,15 +34,15 @@ public class MenuController{
             switch(menu){
                 case 1 : {
                     loop = false;
-                    MahasiswaController.getInstance().index();
+                    AnggotaController.getInstance().index();
                     break;
                 }
-                case 2 : {
-                    System.out.println("Anda memilih 2");
+                case 0 : {
+                    System.exit(0);
                     break;
                 }
                 default: {
-                    System.out.println("Pilihan tidak tersedia!");
+                    System.out.println("\tPilihan tidak tersedia!");
                     break;
                 }
             }

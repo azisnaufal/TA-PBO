@@ -31,30 +31,30 @@ public class AnggotaView extends BaseView{
         
         
         System.out.println("");
-        System.out.println("Daftar Anggota");
-        System.out.println("===================");
-        System.out.print("Masukan NO KTP : ");
+        System.out.println("\tDaftar Anggota");
+        System.out.println("\t======================");
+        System.out.print("\tMasukan NO KTP : ");
         no_ktp = scanner.nextLine();
         anggota.setNo_KTP(no_ktp);
         
-        System.out.print("Masukan Nama Lengkap : ");
+        System.out.print("\tMasukan Nama Lengkap : ");
         nama = scanner.nextLine();
         anggota.setNama_lengkap(nama);
         
-        System.out.print("Masukan Alamat : ");
+        System.out.print("\tMasukan Alamat : ");
         alamat = scanner.nextLine();
         anggota.setAlamat(alamat);
         
-        System.out.print("Masukan Tempat Lahir : ");
+        System.out.print("\tMasukan Tempat Lahir : ");
         tempat_lahir = scanner.nextLine();
         
-        System.out.print("Masukan Tanggal Lahir (DD/MM/YYYY) : ");
+        System.out.print("\tMasukan Tanggal Lahir (DD/MM/YYYY) : ");
         tanggal_lahir = scanner.nextLine();
         
         ttl = tempat_lahir.concat(", " + tanggal_lahir);
         anggota.setTtl(ttl);
         
-        System.out.print("Masukan No Telepon : ");
+        System.out.print("\tMasukan No Telepon : ");
         no_telepon = scanner.next();
         anggota.setNomor_telepon(no_telepon);
         
@@ -62,33 +62,37 @@ public class AnggotaView extends BaseView{
     }
     
     public int menu() {
-        System.out.println("1) Daftar Menjadi Anggota");
-        System.out.println("0) Keluar");
+        System.out.println("");
+        System.out.println("\tAnggota");
+        System.out.println("\t======================");
+        System.out.println("\t1) Daftar Menjadi Anggota");
+        System.out.println("\t2) Update Data Anggota");
         System.out.println(" ");
-        System.out.print("Masukan Pilihan Anda : ");
+        System.out.println("\t0) Keluar");
+        System.out.print("\tMasukan Pilihan Anda : ");
         int choice = scanner.nextInt();
         
         return choice;
     }
     
     public void alertKTPExist() {
-        System.out.println("No KTP telah terdaftar.");
+        System.out.println("\tNo KTP telah terdaftar.");
         System.out.println("");
-        System.out.println("Tekan enter untuk melanjutkan...");
+        System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     
     public void alertDataSaved(){
-        System.out.println("Data telah tersimpan.");
+        System.out.println("\tData telah tersimpan.");
         System.out.println("");
-        System.out.println("Tekan enter untuk melanjutkan...");
+        System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     
     public void alertDataNotSaved() {
-        System.out.println("Error, Data gagal disimpan.");
+        System.out.println("\tError, Data gagal disimpan.");
         System.out.println("");
-        System.out.println("Tekan enter untuk melanjutkan...");
+        System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     
