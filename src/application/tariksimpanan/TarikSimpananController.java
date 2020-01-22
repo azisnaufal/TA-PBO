@@ -55,13 +55,13 @@ public class TarikSimpananController {
     public void tambah(){
         TarikSimpanan tarikSimpanan = view.form();
        
-        String bulan;
+        String tanggal;
         
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
-        bulan = simpleDateFormat.format(date).substring(3, 5);
+        tanggal = simpleDateFormat.format(date);
         
-        tarikSimpanan.setBulan(bulan);
+        tarikSimpanan.setTanggal(tanggal);
   
         boolean saved = repos.insert(tarikSimpanan);
         if (saved){
