@@ -33,7 +33,9 @@ public class TarikSimpananRepository {
     
     public boolean insert(TarikSimpanan tarikSimpanan){
         boolean success = false;
-        String sql = "INSERT INTO Simpanan (id_anggota, poin_ss, jumlah_uang, bulan) Value(?,?,?,?)";
+        
+        String sql = "INSERT INTO HistorySimpanan (id_anggota, poin_ss, jumlah_uang, tanggal) Value(?,?,?,?)";
+        
         Connection con = db.getConnection();
         
         try{
@@ -41,9 +43,10 @@ public class TarikSimpananRepository {
             preparedStatement.setString(1, tarikSimpanan.getId_anggota());
             preparedStatement.setInt(2, tarikSimpanan.getPoin_ss());
             preparedStatement.setInt(3, tarikSimpanan.getJumlah_uang());
-            preparedStatement.setString(4, tarikSimpanan.getBulan());
+            preparedStatement.setString(4, tarikSimpanan.getTanggal());
             
             preparedStatement.execute();
+            
             success = true;
         }catch(Exception e){
             e.printStackTrace();
@@ -51,4 +54,5 @@ public class TarikSimpananRepository {
         
         return success;
     }
+    
 }
