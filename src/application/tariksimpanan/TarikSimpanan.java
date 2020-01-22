@@ -48,7 +48,4 @@ public class TarikSimpanan {
         this.jumlah_uang = jumlah_uang;
     }    
 
-    void setPoin_ss(String jml) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
