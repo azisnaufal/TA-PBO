@@ -61,9 +61,9 @@ public class TarikSimpananView {
     }
     
     public void alertDataNotSaved() {
-        System.out.println("Error, Data gagal disimpan.");
+        System.out.println("\tError, Data gagal disimpan.");
         System.out.println("");
-        System.out.println("Tekan enter untuk melanjutkan...");
+        System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
 
