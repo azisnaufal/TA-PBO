@@ -32,7 +32,7 @@ public class TarikSimpanan {
     }
 
     public int getPoin_ss() {
-        return poin_ss;
+        return -poin_ss;
     }
 
     public void setPoin_ss(int poin) {
@@ -41,10 +41,14 @@ public class TarikSimpanan {
 
     public int getJumlah_uang() {
         jumlah_uang = poin_ss * 25000;
-        return jumlah_uang;
+        return -jumlah_uang;
     }
 
     public void setJumlah_uang(int jumlah_uang) {
         this.jumlah_uang = jumlah_uang;
     }    
+
+    void setPoin_ss(String jml) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
