@@ -36,6 +36,8 @@ public class TarikSimpananRepository {
         
         String sql = "INSERT INTO HistorySimpanan (id_anggota, poin_ss, jumlah_uang, tanggal) Value(?,?,?,?)";
         
+        //String query = "SELECT id_anggota, SUM(poin_sp), SUM(poin_ss), SUM(jumlah_uang) FROM HistorySimpanan GROUP BY id_anggota";
+        
         Connection con = db.getConnection();
         
         try{
