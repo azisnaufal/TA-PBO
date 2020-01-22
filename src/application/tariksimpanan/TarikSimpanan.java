@@ -13,14 +13,14 @@ public class TarikSimpanan {
     private String id_anggota;
     private int poin_ss;
     private int jumlah_uang;
-    private String bulan;
+    private String tanggal;
 
-    public String getBulan() {
-        return bulan;
+    public String getTanggal() {
+        return tanggal;
     }
 
-    public void setBulan(String bulan) {
-        this.bulan = bulan;
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
     }
 
     public String getId_anggota() {
