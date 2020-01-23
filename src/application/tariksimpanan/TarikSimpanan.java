@@ -14,6 +14,15 @@ import java.sql.Timestamp;
 public class TarikSimpanan {
     private String id_anggota;
     private int poin_ss;
+    private int poin_sukarela;
+
+    public int getPoin_sukarela() {
+        return poin_sukarela;
+    }
+
+    public void setPoin_sukarela(int poin_sukarela) {
+        this.poin_sukarela = poin_sukarela;
+    }
     private int jumlah_uang;
     private Timestamp tanggal;
 
