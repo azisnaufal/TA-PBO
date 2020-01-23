@@ -34,9 +34,9 @@ public class TarikSimpananRepository {
     public boolean insert(TarikSimpanan tarikSimpanan){
         boolean success = false;
         
-        String sql = "INSERT INTO HistorySimpanan (id_anggota, poin_ss, jumlah_uang, tanggal) Value(?,?,?,?)";
+        String sql = "INSERT INTO HistorySimpanan (id_anggota, poin_simpanan_sukarela, jumlah_uang, created_at) Value(?,?,?,?)";
         
-        //String query = "SELECT id_anggota, SUM(poin_sp), SUM(poin_ss), SUM(jumlah_uang) FROM HistorySimpanan GROUP BY id_anggota";
+        //String query = "SELECT poin_simpanan_sukarela FROM HistorySimpanan "; 
         
         Connection con = db.getConnection();
         
@@ -45,7 +45,7 @@ public class TarikSimpananRepository {
             preparedStatement.setString(1, tarikSimpanan.getId_anggota());
             preparedStatement.setInt(2, tarikSimpanan.getPoin_ss());
             preparedStatement.setInt(3, tarikSimpanan.getJumlah_uang());
-            preparedStatement.setString(4, tarikSimpanan.getTanggal());
+            preparedStatement.setTimestamp(4, tarikSimpanan.getTanggal());
             
             preparedStatement.execute();
             
