@@ -7,6 +7,7 @@ package application.menu;
 
 import application.anggota.AnggotaController;
 import application.mahasiswa.MahasiswaController;
+import application.tariksimpanan.TarikSimpananController;
 
 /**
  *
@@ -35,6 +36,11 @@ public class MenuController{
                 case 1 : {
                     loop = false;
                     AnggotaController.getInstance().index();
+                    break;
+                }
+                case 3 : {
+                    loop = false;
+                    TarikSimpananController.getInstance().index();
                     break;
                 }
                 case 0 : {
