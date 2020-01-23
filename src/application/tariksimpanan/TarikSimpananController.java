@@ -65,7 +65,7 @@ public class TarikSimpananController {
         
         tarikSimpanan.setTanggal(ts);
   
-        boolean saved = repos.insert(tarikSimpanan);
+        boolean saved = repos.insert(tarikSimpanan) && repos.getPoin_sukarela(tarikSimpanan);
         if (saved){
             view.alertDataSaved();
         }else{
