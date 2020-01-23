@@ -17,6 +17,7 @@ public class MenuView extends BaseView{
         System.out.println("\t======================");
         System.out.println("\t1) Anggota");
         System.out.println("");
+        System.out.println("\t3) Tarik Simpanan");
         System.out.println("\t0) Keluar");
         System.out.print("\tPilihan Anda : ");
         return scanner.nextInt();
