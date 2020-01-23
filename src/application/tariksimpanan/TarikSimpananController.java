@@ -5,13 +5,8 @@
  */
 package application.tariksimpanan;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
