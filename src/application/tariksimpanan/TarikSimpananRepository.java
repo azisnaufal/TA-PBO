@@ -59,7 +59,7 @@ public class TarikSimpananRepository {
     public boolean getPoin_sukarela(TarikSimpanan tarikSimpanan) {
         boolean success = false;
         
-        String sql = "SELECT * FROM HistorySimpanan WHERE id_simpanan = 1"; //masih salah
+        String sql = "SELECT SUM(poin_simpanan_sukarela) FROM HistorySimpanan WHERE id_simpanan = 1"; //masih salah
  
         try {
             Connection con = db.getConnection();
@@ -67,7 +67,7 @@ public class TarikSimpananRepository {
             ResultSet rs = st.executeQuery(sql);
             
             while(rs.next()){
-                int sql2 = rs.getInt("poin_simpanan_sukarela"); //masih salah
+                int sql2 = rs.getInt("SUM(poin_simpanan_sukarela)"); 
                 if(tarikSimpanan.getPoin_sukarela() >= sql2){
                     System.out.println("\tUang Tidak Cukup");
                     success = false;
