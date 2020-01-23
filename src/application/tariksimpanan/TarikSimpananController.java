@@ -5,6 +5,8 @@
  */
 package application.tariksimpanan;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
@@ -55,13 +57,13 @@ public class TarikSimpananController {
     public void tambah(){
         TarikSimpanan tarikSimpanan = view.form();
        
-        String tanggal;
-        
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
-        tanggal = simpleDateFormat.format(date);
         
-        tarikSimpanan.setTanggal(tanggal);
+        long tanggal = date.getTime();
+        Timestamp ts = new Timestamp(tanggal);
+        
+        
+        tarikSimpanan.setTanggal(ts);
   
         boolean saved = repos.insert(tarikSimpanan);
         if (saved){
