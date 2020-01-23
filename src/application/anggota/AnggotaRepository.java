@@ -79,7 +79,7 @@ public class AnggotaRepository {
         
         String query = "KSB/" + tahun + nama_bulan + "/%";
         
-        String sql = "SELECT COUNT(no_KTP) AS countResult FROM Anggota WHERE id_anggota d ?";
+        String sql = "SELECT COUNT(no_KTP) AS countResult FROM Anggota WHERE id_anggota LIKE ?";
         
         try {
             Connection con = db.getConnection();

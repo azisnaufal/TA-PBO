@@ -14,6 +14,14 @@ import java.util.concurrent.TimeUnit;
 public class BaseView {
     public static Scanner scanner = new Scanner(System.in); 
     
+    public void printLn(String params){
+        System.out.println("\t" + params);
+    }
+    
+    public void print(String params){
+        System.out.print("\t" + params);
+    }
+    
     public void alertLoading(){
         System.out.print("Sedang memproses");
         for (int i = 0; i < 5; i++) {

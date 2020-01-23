@@ -39,11 +39,14 @@ public class AnggotaController {
                 case 1:
                         this.tambah();
                     break;
+                case 2:
+                        
+                    break;
                 case 0:
                         System.exit(0);
                     break;
                 default: {
-                    System.out.println("Pilihan tidak tersedia");
+                    System.out.println("\tPilihan tidak tersedia");
                     break;
                 }
             }
@@ -62,7 +65,6 @@ public class AnggotaController {
         String id;        
         
         finalid = simpleDateFormat.format(date);
-        System.out.println(finalid);
         tahun = finalid.substring(6, 10);
         bulan = finalid.substring(3, 5);
         
@@ -80,23 +82,10 @@ public class AnggotaController {
         
         view.alertLoading();
         
-//        List<Anggota> anggotas = repos.get(anggota.getNo_KTP());
-//        
-//        if (anggotas.size() > 0) {
-//            view.alertKTPExist();
-//        }
-//        else {
-//            boolean saved = repos.insert(anggota);
-//            if (saved) {
-//                view.alertDataSaved();
-//            } else {
-//                view.alertDataNotSaved();
-//            }
-//        }
-        
         boolean saved = repos.insert(anggota);
             if (saved) {
                 view.alertDataSaved();
+                System.out.println("\tID Anggota anda adalah " + finallagi);
             } else {
                 view.alertDataNotSaved();
             }
