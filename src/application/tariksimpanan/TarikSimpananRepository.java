@@ -68,8 +68,6 @@ public class TarikSimpananRepository {
             
             while(rs.next()){
                 int sql2 = rs.getInt("poin_simpanan_sukarela"); //masih salah
-                System.out.println(sql2);
-                System.out.println(tarikSimpanan.getPoin_sukarela());
                 if(tarikSimpanan.getPoin_sukarela() >= sql2){
                     System.out.println("\tUang Tidak Cukup");
                     success = false;
