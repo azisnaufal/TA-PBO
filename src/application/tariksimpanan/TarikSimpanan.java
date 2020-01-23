@@ -5,6 +5,8 @@
  */
 package application.tariksimpanan;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Ary
@@ -13,13 +15,13 @@ public class TarikSimpanan {
     private String id_anggota;
     private int poin_ss;
     private int jumlah_uang;
-    private String tanggal;
+    private Timestamp tanggal;
 
-    public String getTanggal() {
+    public Timestamp getTanggal() {
         return tanggal;
     }
 
-    public void setTanggal(String tanggal) {
+    public void setTanggal(Timestamp tanggal) {
         this.tanggal = tanggal;
     }
 
@@ -47,5 +49,4 @@ public class TarikSimpanan {
     public void setJumlah_uang(int jumlah_uang) {
         this.jumlah_uang = jumlah_uang;
     }    
-
 }
