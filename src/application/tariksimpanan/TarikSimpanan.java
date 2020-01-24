@@ -17,6 +17,15 @@ public class TarikSimpanan {
     private int poin_sukarela;
     private int jumlah_uang;
     private Timestamp tanggal;
+    private String Tampilan_id_anggota;
+
+    public String getTampilan_id_anggota() {
+        return Tampilan_id_anggota;
+    }
+
+    public void setTampilan_id_anggota(String Tampilan_id_anggota) {
+        this.Tampilan_id_anggota = Tampilan_id_anggota;
+    }
 
     public int getPoin_sukarela() {
         return poin_sukarela;
