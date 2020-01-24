@@ -56,10 +56,8 @@ public class TarikSimpananController {
         
         long tanggal = date.getTime();
         Timestamp ts = new Timestamp(tanggal);
-        
-        
         tarikSimpanan.setTanggal(ts);
-  
+        
         boolean saved = repos.getPoin_sukarela(tarikSimpanan) && repos.insert(tarikSimpanan);
         if (saved){
             view.alertDataSaved();
