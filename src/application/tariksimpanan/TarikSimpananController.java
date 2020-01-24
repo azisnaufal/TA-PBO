@@ -7,6 +7,7 @@ package application.tariksimpanan;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -57,6 +58,8 @@ public class TarikSimpananController {
         long tanggal = date.getTime();
         Timestamp ts = new Timestamp(tanggal);
         tarikSimpanan.setTanggal(ts);
+        
+        //List<TarikSimpanan> tarikSimpanans = repos.get(tarikSimpanan.getId_anggota());
         
         boolean saved = repos.getPoin_sukarela(tarikSimpanan) && repos.insert(tarikSimpanan);
         if (saved){
