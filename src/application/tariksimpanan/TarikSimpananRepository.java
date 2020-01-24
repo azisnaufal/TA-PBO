@@ -58,7 +58,9 @@ public class TarikSimpananRepository {
     public boolean getPoin_sukarela(TarikSimpanan tarikSimpanan) {
         boolean success = false;
         
-        String sql = "SELECT SUM(poin_simpanan_sukarela) FROM HistorySimpanan WHERE id_anggota = \"?\"";
+        String sql = "SELECT SUM(poin_simpanan_sukarela) "
+                + "FROM HistorySimpanan "
+                + "WHERE id_anggota = ? LIMIT 1";
 
         try {
             Connection con = db.getConnection();
@@ -66,8 +68,7 @@ public class TarikSimpananRepository {
             preparedStatement.setString(1, tarikSimpanan.getId_anggota());
             preparedStatement.execute();
             
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = preparedStatement.executeQuery();
             
             while(rs.next()){
                 int sql1 = rs.getInt("SUM(poin_simpanan_sukarela)"); 
