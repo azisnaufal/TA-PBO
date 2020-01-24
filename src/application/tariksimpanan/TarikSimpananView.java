@@ -26,6 +26,10 @@ public class TarikSimpananView {
         System.out.print("\tMasukkan ID Anggota (KSB/YYYYMM/NNN) : ");
         id_anggota = scanner.nextLine();
         tarikSimpanan.setId_anggota(id_anggota);
+        
+        //System.out.println("\tID Anggota :");
+        //System.out.println("\t\t"+tarikSimpanan.getTampilan_id_anggota());
+        //System.out.print("\tPilihan : ");
                 
         System.out.print("\tMasukkan Jumlah Poin = Rp25.000 * ");
         poin_ss = scanner.nextInt();
