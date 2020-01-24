@@ -59,7 +59,7 @@ public class TarikSimpananRepository {
         boolean success = false;
         
         String sql = "SELECT SUM(poin_simpanan_sukarela) FROM HistorySimpanan WHERE id_anggota = \"?\"";
- 
+
         try {
             Connection con = db.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
