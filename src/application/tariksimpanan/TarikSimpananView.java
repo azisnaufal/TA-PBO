@@ -55,14 +55,14 @@ public class TarikSimpananView {
     }
     
      public void alertDataSaved(){
-        System.out.println("\tData telah tersimpan.");
+        System.out.println("\tPenarikan Berhasil, Data Tersimpan.");
         System.out.println("");
         System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     
     public void alertDataNotSaved() {
-        System.out.println("\tError, Data gagal disimpan.");
+        System.out.println("\tPenarikan Gagal.");
         System.out.println("");
         System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
