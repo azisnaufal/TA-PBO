@@ -5,8 +5,6 @@
  */
 package application.anggota;
 
-
-import application.mahasiswa.MahasiswaRepository;
 import application.util.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
