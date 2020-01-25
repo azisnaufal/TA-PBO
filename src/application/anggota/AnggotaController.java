@@ -5,6 +5,7 @@
  */
 package application.anggota;
 
+import application.menu.MenuController;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -17,10 +18,12 @@ public class AnggotaController {
     private static AnggotaView view = null;
     private static AnggotaController instance = null;
     private static AnggotaRepository repos = null;
+    private static MenuController menus = null;
     
     private AnggotaController() {
         this.view = new AnggotaView();
         this.repos = AnggotaRepository.getInstance();
+        this.menus = MenuController.getInstance();
     }
     
     public static AnggotaController getInstance() {
