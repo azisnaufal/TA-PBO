@@ -45,7 +45,7 @@ public class BaseView {
     public void header(String params){
         System.out.println("");
         System.out.println("\t" + params);
-        System.out.println("======================");
+        System.out.println("\t======================");
     }
     
     public void printLn(String params){

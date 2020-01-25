@@ -147,10 +147,17 @@ public class AnggotaView extends BaseView{
         return choice;
     }
     
+    public String update() {
+        String kode;
+        header("Update Anggota");
+        print("Masukan ID Anggota : KSB/");
+        kode = scanner.nextLine();
+        return kode;
+    }
+    
     public void alertKTPExist() {
         printLn("No KTP telah terdaftar.");
         printLn("");
-        printLn("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     

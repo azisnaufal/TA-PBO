@@ -32,20 +32,6 @@ public class AnggotaRepository {
         return instance;
     }
     
-    public List<Anggota> get(String params) {
-        List<Anggota> anggotas = new ArrayList<>();
-        
-        String sql = "INSERT INTO Anggota (no_KTP, nama_lengkap, alamat, ttl, nomor_telepon)";
-        
-        try {
-            
-        } catch (Exception e) {
-            
-        }
-        
-        return anggotas;
-    }
-    
     public boolean insert(Anggota anggota) {
         boolean success = false;
         String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon, bulan_daftar) value(?,?,?,?,?,?,?)";
@@ -71,9 +57,6 @@ public class AnggotaRepository {
     
     public int getId_anggota(String nama_bulan, String tahun) {
         int temp = 0;
-
-        // ksb/202001/001 
-        // where id_anggota = "ksb/202001/%" 
         
         String query = "KSB/" + tahun + nama_bulan + "/%";
         
@@ -95,5 +78,29 @@ public class AnggotaRepository {
         return temp;
     }
     
-    
+    public List<Anggota> get(String params) {
+        List<Anggota> anggotas = new ArrayList<>();
+        
+        String sql = "SELECT * FROM Anggota WHERE id_anggota = ?";
+        try {
+            Connection con = db.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, params);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Anggota anggota = new Anggota();
+                anggota.setNama_lengkap(resultSet.getString("no_KTP"));
+                anggota.setAlamat(resultSet.getString("alamat"));
+                anggota.setTtl(resultSet.getString("ttl"));
+                anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
+                
+                anggotas.add(anggota);
+            }
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return anggotas;
+    }
 }

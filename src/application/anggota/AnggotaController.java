@@ -93,4 +93,8 @@ public class AnggotaController {
                 view.alertDataNotSaved();
             }
     }
+    
+    public void update(){
+//        Anggota anggota = view.update();
+    }
 }
