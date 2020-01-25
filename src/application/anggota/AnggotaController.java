@@ -7,6 +7,7 @@ package application.anggota;
 
 import application.menu.MenuController;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class AnggotaController {
                         this.tambah();
                     break;
                 case 2:
-                        
+                        this.update();
                     break;
                 case 0:
                         menus.index();
@@ -95,6 +96,11 @@ public class AnggotaController {
     }
     
     public void update(){
-//        Anggota anggota = view.update();
+        List<String> anggotas = new ArrayList<>();
+        Anggota anggota = new Anggota();
+        String ID = view.serachID();
+        
+        anggotas = repos.get(ID);
+        view.showResult(anggotas);
     }
 }

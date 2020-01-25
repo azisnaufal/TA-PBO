@@ -8,6 +8,8 @@ package application.anggota;
 import application.base.BaseView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author Farhan Rafly Fahrezi
@@ -147,12 +149,22 @@ public class AnggotaView extends BaseView{
         return choice;
     }
     
-    public String update() {
-        String kode;
+    public String serachID() {
         header("Update Anggota");
         print("Masukan ID Anggota : KSB/");
-        kode = scanner.nextLine();
+        String kode = scannerNextLine.nextLine();
+        
         return kode;
+    }
+    
+    public void showResult(List<String> params) {
+        header("Hasil Pencarian");
+        printLn("ID Anggota             : " + params.get(0));
+        printLn("No KTP                 : " + params.get(1));
+        printLn("Nama Lengkap           : " + params.get(2));
+        printLn("Alamat                 : " + params.get(3));
+        printLn("Tempat, Tanggal Lahir  : " + params.get(4));
+        printLn("No Telepon             : " + params.get(5));
     }
     
     public void alertKTPExist() {

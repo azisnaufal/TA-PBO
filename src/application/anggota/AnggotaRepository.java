@@ -78,8 +78,9 @@ public class AnggotaRepository {
         return temp;
     }
     
-    public List<Anggota> get(String params) {
-        List<Anggota> anggotas = new ArrayList<>();
+    public List<String> get(String params) {
+        List<String> anggotas = new ArrayList<>();
+        params = "KSB/" + params;
         
         String sql = "SELECT * FROM Anggota WHERE id_anggota = ?";
         try {
@@ -89,17 +90,22 @@ public class AnggotaRepository {
             
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Anggota anggota = new Anggota();
-                anggota.setNama_lengkap(resultSet.getString("no_KTP"));
-                anggota.setAlamat(resultSet.getString("alamat"));
-                anggota.setTtl(resultSet.getString("ttl"));
-                anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
+//                Anggota anggota = new Anggota();
+//                anggota.setNama_lengkap(resultSet.getString("no_KTP"));
+//                anggota.setAlamat(resultSet.getString("alamat"));
+//                anggota.setTtl(resultSet.getString("ttl"));
+//                anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
                 
-                anggotas.add(anggota);
+                anggotas.add(resultSet.getString("id_anggota"));
+                anggotas.add(resultSet.getString("no_KTP"));
+                anggotas.add(resultSet.getString("nama_lengkap"));
+                anggotas.add(resultSet.getString("alamat"));
+                anggotas.add(resultSet.getString("ttl"));
+                anggotas.add(resultSet.getString("nomor_telepon"));
             }
             db.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("\tData tidak ditemukan.");
         }
         return anggotas;
     }
