@@ -140,7 +140,7 @@ public class AnggotaView extends BaseView{
         printLn("1) Daftar Menjadi Anggota");
         printLn("2) Update Data Anggota");
         printLn(" ");
-        printLn("0) Keluar");
+        printLn("0) Kembali");
         print("Masukan Pilihan Anda : ");
         int choice = scanner.nextInt();
         
@@ -163,7 +163,6 @@ public class AnggotaView extends BaseView{
     public void alertDataNotSaved() {
         printLn("Error, Data gagal disimpan.");
         printLn("");
-        printLn("Tekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     

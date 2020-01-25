@@ -46,7 +46,7 @@ public class AnggotaController {
                         
                     break;
                 case 0:
-                        System.exit(0);
+                        menus.index();
                     break;
                 default: {
                     System.out.println("\tPilihan tidak tersedia");
