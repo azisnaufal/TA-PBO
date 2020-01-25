@@ -42,6 +42,12 @@ public class BaseView {
     protected static Loading task = new Loading();
     public static Scanner scanner = new Scanner(System.in);
     
+    public void header(String params){
+        System.out.println("");
+        System.out.println("\t" + params);
+        System.out.println("======================");
+    }
+    
     public void printLn(String params){
         System.out.println("\t" + params);
     }

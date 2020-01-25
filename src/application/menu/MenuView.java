@@ -13,14 +13,13 @@ import application.base.BaseView;
  */
 public class MenuView extends BaseView{
     public int menu(){
-        System.out.println("\tManu Utama");
-        System.out.println("\t======================");
-        System.out.println("\t1) Anggota");
-        System.out.println("");
-        System.out.println("\t3) Tarik Simpanan");
-        System.out.println("\t4) Cetak Laporan");
-        System.out.println("\t0) Keluar");
-        System.out.print("\tPilihan Anda : ");
+        header("Manu Utama");
+        printLn("1) Anggota");
+        printLn("3) Tarik Simpanan");
+        printLn("4) Cetak Laporan");
+        printLn(" ");
+        printLn("0) Keluar");
+        print("Pilihan Anda : ");
         return scanner.nextInt();
     }
 }
