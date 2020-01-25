@@ -38,12 +38,12 @@ public class MenuController{
                     AnggotaController.getInstance().index();
                     break;
                 }
-                case 3 : {
+                case 2 : {
                     loop = false;
                     TarikSimpananController.getInstance().index();
                     break;
                 }
-                case 4 : {
+                case 3 : {
                     loop = false;
                     LaporanController.getInstance().index();
                     break;
