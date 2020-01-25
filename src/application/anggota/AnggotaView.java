@@ -36,9 +36,7 @@ public class AnggotaView extends BaseView{
         
         scanner.nextLine();
         
-        printLn(" ");
-        printLn("Daftar Anggota");
-        printLn("======================");
+        header("Daftar Anggota");
         
         //KTP
         do {            
