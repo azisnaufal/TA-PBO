@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -89,4 +91,27 @@ public class TarikSimpananRepository {
         return success;
     }
     
+    //public List<TarikSimpanan> get(String id_anggota){
+        //List<TarikSimpanan> tarikSimpanans = new ArrayList<>();
+        
+        //String sql = "SELECT DISTINC id_anggota FROM HistorySimpanan";
+        
+        //try{
+            //Connection con = db.getConnection();
+            //PreparedStatement preparedStatement = con.prepareStatement(sql);
+            //preparedStatement.execute();
+            //ResultSet rs = preparedStatement.executeQuery();
+            //while(rs.next()){
+                //TarikSimpanan tarikSimpanan = new TarikSimpanan();
+                //tarikSimpanan.setTampilan_id_anggota(rs.getString("id_anggota"));
+                
+                //tarikSimpanans.add(tarikSimpanan);
+            //}
+            
+        //}catch (Exception e){
+            //e.printStackTrace();
+        //}
+        
+        //return tarikSimpanans;
+    //}  
 }
