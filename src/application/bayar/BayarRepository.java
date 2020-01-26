@@ -12,14 +12,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import application.anggota.Anggota;
+import application.base.BaseRepository;
 
 /**
  *
  * @author binta
  */
-public class BayarRepository  {
+public class BayarRepository  extends BaseRepository{
     private static BayarRepository instance = null;
-    private MySQLConnection db = null; 
     
     private BayarRepository(){
         this.db = MySQLConnection.getInstance();
@@ -56,35 +56,4 @@ public class BayarRepository  {
         return success;
     }
     
-    public List<Anggota> getDaftarAnggota(){
-        String sql = "SELECT * FROM `Anggota`";
-        
-        List<Anggota> daftarAnggota = new ArrayList<>();
-        
-        try {
-            Connection con = db.getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Anggota anggota = new Anggota();
-                anggota.setId_anggota(resultSet.getString("id_anggota"));
-                anggota.setNo_KTP(resultSet.getString("no_KTP"));
-                anggota.setNama_lengkap(resultSet.getString("nama_lengkap"));
-                anggota.setAlamat(resultSet.getString("alamat"));
-                anggota.setTtl(resultSet.getString("ttl"));
-                anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
-                daftarAnggota.add(anggota);
-            }
-            db.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        return daftarAnggota;
-       
-    }
-    
-   
 }

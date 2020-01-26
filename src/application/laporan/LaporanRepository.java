@@ -5,6 +5,7 @@
 */
 package application.laporan;
 
+import application.base.BaseRepository;
 import application.tariksimpanan.*;
 import application.util.MySQLConnection;
 import com.sun.istack.Nullable;
@@ -14,9 +15,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaporanRepository {
+public class LaporanRepository extends BaseRepository{
     private static LaporanRepository instance = null;
-    private MySQLConnection db = null;
     
     private LaporanRepository(){
         this.db = MySQLConnection.getInstance();
