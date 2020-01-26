@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -33,8 +36,11 @@ public class AnggotaRepository {
     }
     
     public boolean insert(Anggota anggota) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
         boolean success = false;
-        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon) value(?,?,?,?,?,?)";
+        
+        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon, created_at) value(?,?,?,?,?,?,?)";
         Connection con = db.getConnection();
         
         try {
@@ -45,6 +51,7 @@ public class AnggotaRepository {
             preparedStatement.setString(4, anggota.getAlamat());
             preparedStatement.setString(5, anggota.getTtl());
             preparedStatement.setString(6, anggota.getNomor_telepon());
+            preparedStatement.setString(7, time);
             
             preparedStatement.execute();
             success = true;

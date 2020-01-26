@@ -83,7 +83,7 @@ public class AnggotaController {
         
         anggota.setId_anggota(finallagi);
         
-        view.alertLoading();
+        
         
         boolean saved = repos.insert(anggota);
             if (saved) {
