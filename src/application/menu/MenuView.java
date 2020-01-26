@@ -17,6 +17,7 @@ public class MenuView extends BaseView{
         printLn("1) Anggota");
         printLn("2) Tarik Simpanan");
         printLn("3) Cetak Laporan");
+        printLn("4) Bayar Iuran");
         printLn(" ");
         printLn("0) Keluar");
         print("Pilihan Anda : ");

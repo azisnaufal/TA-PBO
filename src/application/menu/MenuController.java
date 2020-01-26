@@ -6,6 +6,7 @@
 package application.menu;
 
 import application.anggota.AnggotaController;
+import application.bayar.BayarController;
 import application.laporan.LaporanController;
 import application.tariksimpanan.TarikSimpananController;
 
@@ -46,6 +47,11 @@ public class MenuController{
                 case 3 : {
                     loop = false;
                     LaporanController.getInstance().index();
+                    break;
+                }
+                case 4 : {
+                    loop = false;
+                    BayarController.getInstance().index();
                     break;
                 }
                 case 0 : {
