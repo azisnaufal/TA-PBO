@@ -7,7 +7,6 @@ package application.bayar;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
 /**
  *
  * @author binta
@@ -50,7 +49,7 @@ public class BayarController {
     }
     
     public void bayar(){
-        Bayar bayar = view.form();
+        Bayar bayar = view.form(repos.getDaftarAnggota());
        
         Date date = new Date();
         
@@ -67,5 +66,4 @@ public class BayarController {
             view.alertDataNotSaved();
         }
     }
-
 }

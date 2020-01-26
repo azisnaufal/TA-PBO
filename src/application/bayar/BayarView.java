@@ -6,28 +6,36 @@
 package application.bayar;
 
 import static application.base.BaseView.scanner;
-
+import java.util.List;
+import application.anggota.Anggota;
 /**
  *
  * @author binta
  */
 public class BayarView {
-    public Bayar form(){
+    public Bayar form(List<Anggota> daftarAnggota){
         Bayar bayar = new Bayar();
         
-        String id_anggota;
+        int index_anggota;
         int poin_sw;
         int poin_ss;
         
         scanner.nextLine();
         
         System.out.println("");
-        System.out.println("\tBayar Iuarn");
+        System.out.println("\tBayar Iuran");
         System.out.println("\t=======================");
+        System.out.println();
         
-        System.out.print("\tMasukkan ID Anggota (KSB/YYYYMM/NNN) : ");
-        id_anggota = scanner.nextLine();
-        bayar.setId_anggota(id_anggota);
+        tampilDaftarAnggota(daftarAnggota);
+        System.out.println();
+        
+        System.out.print("\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
+        index_anggota = scanner.nextInt()-1;  // data pertama => nomor 1 => index == 0 ,
+        bayar.setId_anggota(daftarAnggota.get(index_anggota).getId_anggota());
+        System.out.println("\tAnda memilih : " + (index_anggota + 1) + ". " +
+                daftarAnggota.get(index_anggota).getId_anggota() + "  |  " +
+                daftarAnggota.get(index_anggota).getNama_lengkap()+"\n");
         
         System.out.print("\tMasukkan Jumlah Simpanan Wajib = Rp25.000 * ");
         poin_sw = scanner.nextInt();
@@ -35,7 +43,7 @@ public class BayarView {
         
         System.out.print("\tMasukkan Jumlah Simpanan Sukarela = Rp25.000 * ");
         poin_ss = scanner.nextInt();
-        bayar.setPoin_sukarela(poin_sw);
+        bayar.setPoin_sukarela(poin_ss);
         
         return bayar;
     }
@@ -50,6 +58,15 @@ public class BayarView {
         int choice = scanner.nextInt();
         
         return choice;
+    }
+    
+    public void tampilDaftarAnggota(List<Anggota> daftarAnggota ){
+        System.out.println("\t\t[Daftar Anggota] \n");
+        System.out.println("\t\tNo.\tId Anggota      |  Nama Lengkap");
+        for(int i = 0 ; i < daftarAnggota.size();i++)
+            System.out.println("\t\t" + (i+1) + ".\t" +
+                    daftarAnggota.get(i).getId_anggota() + "  |  " +
+                    daftarAnggota.get(i).getNama_lengkap());
     }
     
     public void alertId_anggotaNotExist(){

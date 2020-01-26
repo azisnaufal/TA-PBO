@@ -9,7 +9,9 @@ import application.util.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import application.anggota.Anggota;
 
 /**
  *
@@ -52,6 +54,36 @@ public class BayarRepository  {
         }
         
         return success;
+    }
+    
+    public List<Anggota> getDaftarAnggota(){
+        String sql = "SELECT * FROM `Anggota`";
+        
+        List<Anggota> daftarAnggota = new ArrayList<>();
+        
+        try {
+            Connection con = db.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Anggota anggota = new Anggota();
+                anggota.setId_anggota(resultSet.getString("id_anggota"));
+                anggota.setNo_KTP(resultSet.getString("no_KTP"));
+                anggota.setNama_lengkap(resultSet.getString("nama_lengkap"));
+                anggota.setAlamat(resultSet.getString("alamat"));
+                anggota.setTtl(resultSet.getString("ttl"));
+                anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
+                daftarAnggota.add(anggota);
+            }
+            db.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return daftarAnggota;
+       
     }
     
    
