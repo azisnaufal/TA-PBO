@@ -5,6 +5,8 @@
  */
 package application.anggota;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Farhan Rafly Fahrezi
@@ -16,14 +18,14 @@ public class Anggota {
     private String alamat;
     private String ttl;
     private String nomor_telepon;
-    private String bulan_masuk;
+    private Timestamp created_at;
 
-    public String getBulan_masuk() {
-        return bulan_masuk;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setBulan_masuk(String bulan_masuk) {
-        this.bulan_masuk = bulan_masuk;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
     public String getId_anggota() {

@@ -34,7 +34,7 @@ public class AnggotaRepository {
     
     public boolean insert(Anggota anggota) {
         boolean success = false;
-        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon, bulan_daftar) value(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon) value(?,?,?,?,?,?)";
         Connection con = db.getConnection();
         
         try {
@@ -45,7 +45,6 @@ public class AnggotaRepository {
             preparedStatement.setString(4, anggota.getAlamat());
             preparedStatement.setString(5, anggota.getTtl());
             preparedStatement.setString(6, anggota.getNomor_telepon());
-            preparedStatement.setString(7, anggota.getBulan_masuk());
             
             preparedStatement.execute();
             success = true;

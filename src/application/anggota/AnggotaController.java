@@ -81,7 +81,6 @@ public class AnggotaController {
         
         finallagi = "KSB/" + tahun + bulan + "/" + id;
         
-        anggota.setBulan_masuk(bulan);
         anggota.setId_anggota(finallagi);
         
         view.alertLoading();
