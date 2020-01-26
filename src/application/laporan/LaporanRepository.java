@@ -7,6 +7,7 @@ package application.laporan;
 
 import application.tariksimpanan.*;
 import application.util.MySQLConnection;
+import com.sun.istack.Nullable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,37 +29,34 @@ public class LaporanRepository {
         return instance;
     }
     
-    public boolean insert(TarikSimpanan tarikSimpanan){
-        boolean success = false;
+    private SumSimpanan getSumSimpanan(int year, String id_anggota){
+        String sql = "select sum(poin_simpanan_wajib) as simpanan_wajib, sum(poin_simpanan_sukarela) as simpanan_sukarela\n" +
+                "from HistorySimpanan\n" +
+                "where year(created_at) = ? and id_anggota = ? \n";
         
-        String sql = "INSERT INTO HistorySimpanan (id_anggota, poin_simpanan_sukarela, jumlah_uang, created_at) Value(?,?,?,?)";
-        
-        Connection con = db.getConnection();
-        
-        try{
+        SumSimpanan item = new SumSimpanan();
+        try {
+            Connection con = db.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, tarikSimpanan.getId_anggota());
-            preparedStatement.setInt(2, tarikSimpanan.getPoin_ss());
-            preparedStatement.setInt(3, tarikSimpanan.getJumlah_uang());
-            preparedStatement.setTimestamp(4, tarikSimpanan.getTanggal());
+            preparedStatement.setInt(1, year);
+            preparedStatement.setString(2, id_anggota);
             
-            preparedStatement.execute();
-            
-            success = true;
-        }catch(Exception e){
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                item.setSimpanan_sukarela(resultSet.getInt("simpanan_sukarela"));
+                item.setSimpanan_wajib(resultSet.getInt("simpanan_wajib"));
+            }
+            db.close();
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
         
-        return success;
-    }
+        return item;
+    };
     
-    public List<RekapPoinTahunan> getRekapPoinTahunan(){
-        String sql = "select Anggota.id_anggota, nama_lengkap, sum(poin_simpanan_sukarela) as simpanan_wajib, sum(poin_simpanan_sukarela) as simpanan_sukarela\n" +
-                "from HistorySimpanan\n" +
-                "join Anggota  on HistorySimpanan.id_anggota = Anggota.id_anggota\n" +
-                "where year(created_at) = year(now())" + 
-                "group by id_anggota";
-        
+    public List<RekapPoinTahunan> getRekapPoinTahunan(int year){
+        String sql = "select id_anggota, nama_lengkap from Anggota";
         List<RekapPoinTahunan> rekaps = new ArrayList<>();
         
         try {
@@ -70,8 +68,11 @@ public class LaporanRepository {
                 RekapPoinTahunan rekap = new RekapPoinTahunan();
                 rekap.setId_anggota(resultSet.getString("id_anggota"));
                 rekap.setNama(resultSet.getString("nama_lengkap"));
-                rekap.setSimpanan_wajib((resultSet.getInt("simpanan_wajib") * 25000) + 100000);
-                rekap.setSimpanan_sukarela(resultSet.getInt("simpanan_sukarela") * 25000);
+                
+                SumSimpanan sum = this.getSumSimpanan(year, rekap.getId_anggota());
+                
+                rekap.setSimpanan_wajib((sum.getSimpanan_wajib() * 25000) + 100000);
+                rekap.setSimpanan_sukarela(sum.getSimpanan_sukarela() * 25000);
                 rekap.setTotal(rekap.getSimpanan_sukarela() + rekap.getSimpanan_wajib());
                 rekap.setTotalPoin(rekap.getTotal()/25000);
                 
@@ -84,41 +85,81 @@ public class LaporanRepository {
         }
         
         return rekaps;
-       
+        
     }
     
-    public boolean getPoin_sukarela(TarikSimpanan tarikSimpanan) {
-        boolean success = false;
+    private int getSumSimpananWajib(int year, String id_anggota){
+        String sql = "select sum(poin_simpanan_wajib) as simpanan_wajib, year(created_at) as year\n" +
+                "from HistorySimpanan\n" +
+                "where year(created_at) <= ? and id_anggota = ?\n" +
+                "group by year(created_at)";
         
-        String sql = "SELECT SUM(poin_simpanan_sukarela) "
-                + "FROM HistorySimpanan "
-                + "WHERE id_anggota = ? LIMIT 1";
+        int sum = 0;
+        List<SumSimpananWajib> sums = new ArrayList<>();
+        try {
+            Connection con = db.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, year);
+            preparedStatement.setString(2, id_anggota);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                SumSimpananWajib item = new SumSimpananWajib();
+                item.setPoin(resultSet.getInt("simpanan_wajib"));
+                item.setYear(resultSet.getInt("year"));
+                sums.add(item);
+            }
+            db.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        if (!sums.isEmpty()){
+            int range = year - sums.get(0).getYear();
+            
+            for (int i = 0; i < range; i++){
+                sum += sums.get(i).getPoin();
+                if (sum > 12){
+                    sum -= 12;
+                }
+            }
+        }
+        
+        return sum;
+    };
+    
+    public List<RekapIuranAnggota> getRekapIuranAnggota(int year){
+        String sql = "select id_anggota, nama_lengkap\n" +
+                "from Anggota";
+        
+        List<RekapIuranAnggota> rekaps = new ArrayList<>();
         
         try {
             Connection con = db.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, tarikSimpanan.getId_anggota());
-            preparedStatement.execute();
             
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            while(rs.next()){
-                int sql1 = rs.getInt("SUM(poin_simpanan_sukarela)");
-                if(tarikSimpanan.getPoin_sukarela() > sql1){
-                    System.out.println("\tPoin Anda Tidak Cukup");
-                    System.out.println("\tTotal Poin Simpanan Sukarela Anda : "+sql1);
-                    success = false;
-                }else{
-                    int sql2 = sql1 - tarikSimpanan.getPoin_sukarela();
-                    System.out.println("\tSisa Poin Simpanan Sukarela Anda : "+sql2);
-                    
-                    success = true;
-                }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                RekapIuranAnggota rekap = new RekapIuranAnggota();
+                rekap.setId_anggota(resultSet.getString("id_anggota"));
+                rekap.setNama(resultSet.getString("nama_lengkap"));
+                
+                rekaps.add(rekap);
             }
-        } catch (Exception e) {
-            System.out.println(e);
+            db.close();
         }
-        return success;
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        for (RekapIuranAnggota rekap : rekaps) {
+            int poin = this.getSumSimpananWajib(year, rekap.getId_anggota());
+            rekap.setSimpanan_wajib(poin);
+        }
+        
+        return rekaps;
+        
     }
     
 }

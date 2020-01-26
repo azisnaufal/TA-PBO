@@ -33,7 +33,7 @@ public class LaporanController {
     private static final String FILE_EXTENSION = ".xlsx";
     private static final String FILE_REKAP_POIN_TAHUNAN = "Rekap Poin Tahunan - ";
     private static final String FILE_KARTU_ANGGOTA = "Kartu Anggota - ";
-    private static final String FILE_IURAN_ANGGOTA = "Rekap Poin Tahunan.xlsx" + FILE_EXTENSION;
+    private static final String FILE_IURAN_ANGGOTA = "Rekap Iuran Anggota - ";
     private static final String CURRENCY_FORMAT = "_-Rp* #.##0_-;-Rp* #.##0_-;_-Rp* \"-\"_-;_-@_-";
     
     
@@ -76,7 +76,72 @@ public class LaporanController {
     }
     
     public void kartuAnggota(){
+        int year = view.frmTahun();
+        view.alertLoading();
         
+        try {
+            // create new book
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            
+            //create formatter
+            dataFormat = workbook.createDataFormat();
+            
+            // create new sheet
+            Sheet sheet = workbook.createSheet();
+            // create row,
+            Row row = sheet.createRow(1);
+           
+            createCellMergeAndCenter(sheet, row, 1, 1, 1, 2, "ID Anggota", 1);
+            
+            row = sheet.createRow(2);
+            createCellMergeAndCenter(sheet, row, 2, 2, 1, 2, "Tahun", 1);
+            createCell(row, year, 3);
+            
+            row = sheet.createRow(4);
+            createCellMergeAndCenter(sheet, row, 4, 6, 1, 1, "No.", 1);
+            createCellMergeAndCenter(sheet, row, 4, 6, 2, 2, "TGL.", 2);
+            createCellMergeAndCenter(sheet, row, 4, 4, 3, 6, "MUTASI SIMPANAN", 3);
+            
+            row = sheet.createRow(5);
+            createCellMergeAndCenter(sheet, row, 5, 6, 3, 3, "SP + SW", 3);
+            createCellMergeAndCenter(sheet, row, 5, 5, 4, 5, "Simpanan Sukarela", 4);
+            
+            row = sheet.createRow(6);
+            createCellAndCenter(row, "Masuk", 4);
+            createCellAndCenter(row, "Keluar", 5);
+            
+            row = sheet.getRow(5);
+            createCellMergeAndCenter(sheet, row, 5, 6, 6, 6, "Total", 6);
+            
+            row = sheet.getRow(4);
+            createCellMergeAndCenter(sheet, row, 4, 4, 7, 9, "SALDO SIMPANAN", 7);
+            createCellMergeAndCenter(sheet, row, 4, 6, 10, 10, "PARAF PENGURUS", 10);
+            
+            row = sheet.getRow(5);
+            createCellMergeAndCenter(sheet, row, 5, 6, 7, 7, "SP + SW", 7);
+            createCellMergeAndCenter(sheet, row, 5, 6, 8, 8, "SS", 8);
+            createCellMergeAndCenter(sheet, row, 5, 6, 9, 9, "Total", 9);
+     
+            //get data
+            int i = 1;
+
+            //auto resize
+            for (i = 0; i < 10; i++){
+                sheet.autoSizeColumn(i, true);
+            }
+            // create new excel file
+            File desktopDir = new File(System.getProperty("user.home"), "Desktop");
+            FileOutputStream fileOut = new FileOutputStream(new File(desktopDir, FILE_KARTU_ANGGOTA + year + " - " + FILE_EXTENSION));
+            // write  book ke file
+            workbook.write(fileOut);
+            // close file
+            fileOut.close();
+            view.alertDataSaved();
+        } catch (Exception e) {
+            view.alertDataNotSaved();
+            
+            e.printStackTrace();
+        }
     }
     
     private void createCellMergeAndCenter(Sheet sheet, Row row, int firstRow, int lastRow, int firstCol, int lastCol, String cellValue, int cellNumber){
@@ -129,6 +194,7 @@ public class LaporanController {
     }
     
     public void rekapPoinTahunan(){
+        int year = view.frmTahun();
         view.alertLoading();
         
         try {
@@ -165,7 +231,7 @@ public class LaporanController {
             createCellMergeAndCenter(sheet, row, 1, 2, 8, 8, "Jumlah Poin", 8);
             
             //get data
-            List<RekapPoinTahunan> rekap = repos.getRekapPoinTahunan();
+            List<RekapPoinTahunan> rekap = repos.getRekapPoinTahunan(year);
             int i = 1;
             for (RekapPoinTahunan rekapPoinTahunan : rekap) {
                 row = sheet.createRow(2 + i);
@@ -176,6 +242,7 @@ public class LaporanController {
                 createCellCurrency(workbook, row, rekapPoinTahunan.getSimpanan_sukarela(), 5);
                 createCellCurrency(workbook, row, rekapPoinTahunan.getTotal(), 6);
                 createCell(row, rekapPoinTahunan.getTotalPoin(), 8);
+                i++;
             }
             
             //auto resize
@@ -184,7 +251,6 @@ public class LaporanController {
             }
             // create new excel file
             File desktopDir = new File(System.getProperty("user.home"), "Desktop");
-            int year = Calendar.getInstance().get(Calendar.YEAR);
             FileOutputStream fileOut = new FileOutputStream(new File(desktopDir, FILE_REKAP_POIN_TAHUNAN + year + FILE_EXTENSION));
             // write  book ke file
             workbook.write(fileOut);
@@ -199,6 +265,77 @@ public class LaporanController {
     }
     
     public void rekapIuranAnggota(){
-        
+        int year = view.frmTahun();
+        view.alertLoading();
+
+        try {
+            // create new book
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            
+            //create formatter
+            dataFormat = workbook.createDataFormat();
+            
+            // create new sheet
+            Sheet sheet = workbook.createSheet();
+            // create row,
+            Row row = sheet.createRow(1);
+            
+            createCellMergeAndCenter(sheet, row, 1, 3, 1, 1, "No.", 1);
+            createCellMergeAndCenter(sheet, row, 1, 3, 2, 2, "ID Anggota", 2);
+            createCellMergeAndCenter(sheet, row, 1, 3, 3, 3, "Nama", 3);
+            createCellMergeAndCenter(sheet, row, 1, 1, 4, 15, "IURAN SW / BULAN", 4);
+            
+            row = sheet.createRow(2);
+            createCellMergeAndCenter(sheet, row, 2, 3, 4, 4, "JAN", 4);
+            createCellMergeAndCenter(sheet, row, 2, 3, 5, 5, "FEB", 5);
+            createCellMergeAndCenter(sheet, row, 2, 3, 6, 6, "MAR", 6);
+            createCellMergeAndCenter(sheet, row, 2, 3, 7, 7, "APR", 7);
+            createCellMergeAndCenter(sheet, row, 2, 3, 8, 8, "MEI", 8);
+            createCellMergeAndCenter(sheet, row, 2, 3, 9, 9, "JUN", 9);
+            createCellMergeAndCenter(sheet, row, 2, 3, 10, 10, "JUL", 10);
+            createCellMergeAndCenter(sheet, row, 2, 3, 11, 11, "AGU", 11);
+            createCellMergeAndCenter(sheet, row, 2, 3, 12, 12, "SEP", 12);
+            createCellMergeAndCenter(sheet, row, 2, 3, 13, 13, "OKT", 13);
+            createCellMergeAndCenter(sheet, row, 2, 3, 14, 14, "NOV", 14);
+            createCellMergeAndCenter(sheet, row, 2, 3, 15, 15, "DES", 15);
+            
+            //get data
+            List<RekapIuranAnggota> rekap = repos.getRekapIuranAnggota(year);
+            int i = 1;
+            for (RekapIuranAnggota rekapIuranAnggota : rekap) {
+                row = sheet.createRow(3 + i);
+                createCell(row, i, 1);
+                createCell(row, rekapIuranAnggota.getId_anggota(), 2);
+                createCell(row, rekapIuranAnggota.getNama(), 3);
+                int poin = rekapIuranAnggota.getSimpanan_wajib();
+                for (int j = 4; j <= 15; j++){
+                    if (poin > 0){
+                        createCell(row, "V", j);
+                        poin--;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                i++;
+            }
+            
+            //auto resize
+            for (i = 0; i <= 19; i++){
+                sheet.autoSizeColumn(i, true);
+            }
+            // create new excel file
+            File desktopDir = new File(System.getProperty("user.home"), "Desktop");
+            FileOutputStream fileOut = new FileOutputStream(new File(desktopDir, FILE_IURAN_ANGGOTA + year + FILE_EXTENSION));
+            // write  book ke file
+            workbook.write(fileOut);
+            // close file
+            fileOut.close();
+            view.alertDataSaved();
+        } catch (Exception e) {
+            view.alertDataNotSaved();
+            
+            e.printStackTrace();
+        }
     }
 }

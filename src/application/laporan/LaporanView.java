@@ -25,6 +25,14 @@ public class LaporanView extends BaseView{
         return choice;
     }
     
+    public int frmTahun(){
+        System.out.println("");
+        System.out.print("\tMasukkan Tahun Laporan: ");
+        int year = scanner.nextInt();
+        
+        return year;
+    }
+    
     public void alertId_anggotaNotExist(){
         System.out.println("\tId Anggota tidak terdaftar");
         System.out.println("");
