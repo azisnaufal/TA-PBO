@@ -83,8 +83,6 @@ public class AnggotaController {
         
         anggota.setId_anggota(finallagi);
         
-        
-        
         boolean saved = repos.insert(anggota);
             if (saved) {
                 view.alertDataSaved();
@@ -100,6 +98,27 @@ public class AnggotaController {
         String ID = view.serachID();
         
         anggotas = repos.get(ID);
-        view.showResult(anggotas);
+        int temp = view.showResult(anggotas);
+        
+        switch (temp) {
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:    
+             
+                break;
+            case 6:
+                
+                break;
+        }
     }
 }
