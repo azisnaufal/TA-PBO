@@ -152,7 +152,7 @@ public class AnggotaView extends BaseView{
     public String serachID() {
         header("Update Anggota");
         print("Masukan ID Anggota : KSB/");
-        String kode = scannerNextLine.nextLine();
+        String kode = scanner.nextLine();
         
         return kode;
     }

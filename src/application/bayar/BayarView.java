@@ -5,14 +5,14 @@
  */
 package application.bayar;
 
-import static application.base.BaseView.scanner;
 import java.util.List;
 import application.anggota.Anggota;
+import application.base.BaseView;
 /**
  *
  * @author binta
  */
-public class BayarView {
+public class BayarView extends BaseView{
     public Bayar form(List<Anggota> daftarAnggota){
         Bayar bayar = new Bayar();
         
@@ -59,39 +59,5 @@ public class BayarView {
         
         return choice;
     }
-    
-    public void tampilDaftarAnggota(List<Anggota> daftarAnggota ){
-        System.out.println("\t\t[Daftar Anggota] \n");
-        System.out.println("\t\tNo.\tId Anggota      |  Nama Lengkap");
-        for(int i = 0 ; i < daftarAnggota.size();i++)
-            System.out.println("\t\t" + (i+1) + ".\t" +
-                    daftarAnggota.get(i).getId_anggota() + "  |  " +
-                    daftarAnggota.get(i).getNama_lengkap());
-    }
-    
-    public void alertId_anggotaNotExist(){
-        System.out.println("\tId Anggota tidak terdaftar");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkn");
-        scanner.nextLine();
-    }
-    
-     public void alertDataSaved(){
-        System.out.println("\tData telah tersimpan.");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
-        scanner.nextLine();
-    }
-    
-    public void alertDataNotSaved() {
-        System.out.println("\tError, Data gagal disimpan.");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
-        scanner.nextLine();
-    }
 
-    void alertLoading() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
 }
-

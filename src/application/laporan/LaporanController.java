@@ -5,6 +5,7 @@
 */
 package application.laporan;
 
+import application.anggota.Anggota;
 import application.tariksimpanan.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -76,6 +77,8 @@ public class LaporanController {
     }
     
     public void kartuAnggota(){
+        List<Anggota> anggotas = repos.getDaftarAnggota();
+        
         int year = view.frmTahun();
         view.alertLoading();
         

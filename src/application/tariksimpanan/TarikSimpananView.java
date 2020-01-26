@@ -5,12 +5,13 @@
  */
 package application.tariksimpanan;
 
-import static application.base.BaseView.scanner;
+import application.base.BaseView;
+
 /**
  *
  * @author Ary
  */
-public class TarikSimpananView {
+public class TarikSimpananView extends BaseView{
     public TarikSimpanan form(){
         TarikSimpanan tarikSimpanan = new TarikSimpanan();
         
@@ -50,29 +51,6 @@ public class TarikSimpananView {
         
         return choice;
     }
-    
-    public void alertId_anggotaNotExist(){
-        System.out.println("\tId Anggota tidak terdaftar");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkn");
-        scanner.nextLine();
-    }
-    
-     public void alertDataSaved(){
-        System.out.println("\tPenarikan Berhasil, Data Tersimpan.");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
-        scanner.nextLine();
-    }
-    
-    public void alertDataNotSaved() {
-        System.out.println("\tPenarikan Gagal.");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
-        scanner.nextLine();
-    }
+   
 
-    void alertLoading() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
 }
