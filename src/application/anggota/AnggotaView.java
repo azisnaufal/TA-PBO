@@ -157,14 +157,36 @@ public class AnggotaView extends BaseView{
         return kode;
     }
     
-    public void showResult(List<String> params) {
+    public int showResult(List<String> params) {
+        int choice = 0;
+        
         header("Hasil Pencarian");
-        printLn("ID Anggota             : " + params.get(0));
-        printLn("No KTP                 : " + params.get(1));
-        printLn("Nama Lengkap           : " + params.get(2));
-        printLn("Alamat                 : " + params.get(3));
-        printLn("Tempat, Tanggal Lahir  : " + params.get(4));
-        printLn("No Telepon             : " + params.get(5));
+        printLn("1) ID Anggota             : " + params.get(0));
+        printLn("2) No KTP                 : " + params.get(1));
+        printLn("3) Nama Lengkap           : " + params.get(2));
+        printLn("4) Alamat                 : " + params.get(3));
+        printLn("5) Tempat, Tanggal Lahir  : " + params.get(4));
+        printLn("6) No Telepon             : " + params.get(5));
+        printLn("");
+        do {            
+            print("Bagian yang ingin dirubah ? ");
+            choice = scanner.nextInt();    
+            if (choice > 6) {
+                printLn("Pilihan tidak tersedia");
+            }
+        } while (choice > 6);
+        
+        return choice;
+    }
+    
+    public String update(String params, String params2) {
+        header("Ubah " + params);
+        printLn(params + " sebelumnya : " + params2);
+        printLn(" ");
+        print(params + " yang baru : ");
+        String temp = scanner.nextLine();
+        
+        return temp;
     }
     
     public void alertKTPExist() {
