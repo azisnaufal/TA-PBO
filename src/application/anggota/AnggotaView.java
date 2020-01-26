@@ -8,6 +8,8 @@ package application.anggota;
 import application.base.BaseView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author Farhan Rafly Fahrezi
@@ -36,9 +38,7 @@ public class AnggotaView extends BaseView{
         
         scanner.nextLine();
         
-        printLn(" ");
-        printLn("Daftar Anggota");
-        printLn("======================");
+        header("Daftar Anggota");
         
         //KTP
         do {            
@@ -142,17 +142,34 @@ public class AnggotaView extends BaseView{
         printLn("1) Daftar Menjadi Anggota");
         printLn("2) Update Data Anggota");
         printLn(" ");
-        printLn("0) Keluar");
+        printLn("0) Kembali");
         print("Masukan Pilihan Anda : ");
         int choice = scanner.nextInt();
         
         return choice;
     }
     
+    public String serachID() {
+        header("Update Anggota");
+        print("Masukan ID Anggota : KSB/");
+        String kode = scannerNextLine.nextLine();
+        
+        return kode;
+    }
+    
+    public void showResult(List<String> params) {
+        header("Hasil Pencarian");
+        printLn("ID Anggota             : " + params.get(0));
+        printLn("No KTP                 : " + params.get(1));
+        printLn("Nama Lengkap           : " + params.get(2));
+        printLn("Alamat                 : " + params.get(3));
+        printLn("Tempat, Tanggal Lahir  : " + params.get(4));
+        printLn("No Telepon             : " + params.get(5));
+    }
+    
     public void alertKTPExist() {
         printLn("No KTP telah terdaftar.");
         printLn("");
-        printLn("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     
@@ -165,7 +182,6 @@ public class AnggotaView extends BaseView{
     public void alertDataNotSaved() {
         printLn("Error, Data gagal disimpan.");
         printLn("");
-        printLn("Tekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     

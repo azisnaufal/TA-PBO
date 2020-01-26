@@ -12,14 +12,12 @@ import static application.base.BaseView.scanner;
 public class LaporanView extends BaseView{
 
     public int menu(){
-        System.out.println("");
-        System.out.println("\tCetak Laporan");
-        System.out.println("\t===============");
-        System.out.println("\t1) Kartu Anggota");
-        System.out.println("\t2) Rekapitulasi Poin Tahunan");
-        System.out.println("\t3) Rekapitulasi Iuran Anggota");
-        System.out.println(" ");
-        System.out.print("\tMasukkan Pilihan Anda : ");
+        header("Cetak Laporan");
+        printLn("1) Kartu Anggota");
+        printLn("2) Rekapitulasi Poin Tahunan");
+        printLn("3) Rekapitulasi Iuran Anggota");
+        printLn(" ");
+        print("Masukkan Pilihan Anda : ");
         int choice = scanner.nextInt();
         
         return choice;
@@ -34,24 +32,24 @@ public class LaporanView extends BaseView{
     }
     
     public void alertId_anggotaNotExist(){
-        System.out.println("\tId Anggota tidak terdaftar");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkn");
+        printLn("Id Anggota tidak terdaftar");
+        printLn(" ");
+        printLn("Tekan enter untuk melanjutkn");
         scanner.nextLine();
     }
     
      public void alertDataSaved(){
-        System.out.println("\n\tLaporan berhasil disimpan di Desktop Anda!");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
+        printLn("Laporan berhasil disimpan di Desktop Anda!");
+        printLn(" ");
+        printLn("Tekan enter untuk melanjutkan...");
         stopLoading();
         scanner.nextLine();
     }
     
     public void alertDataNotSaved() {
-        System.out.println("\n\tLaporan gagal disimpan!");
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
+        printLn("Laporan gagal disimpan!");
+        printLn(" ");
+        printLn("Tekan enter untuk melanjutkan...");
         stopLoading();
         scanner.nextLine();
     }

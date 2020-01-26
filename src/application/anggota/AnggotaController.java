@@ -5,7 +5,9 @@
  */
 package application.anggota;
 
+import application.menu.MenuController;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,10 +19,12 @@ public class AnggotaController {
     private static AnggotaView view = null;
     private static AnggotaController instance = null;
     private static AnggotaRepository repos = null;
+    private static MenuController menus = null;
     
     private AnggotaController() {
         this.view = new AnggotaView();
         this.repos = AnggotaRepository.getInstance();
+        this.menus = MenuController.getInstance();
     }
     
     public static AnggotaController getInstance() {
@@ -40,10 +44,10 @@ public class AnggotaController {
                         this.tambah();
                     break;
                 case 2:
-                        
+                        this.update();
                     break;
                 case 0:
-                        System.exit(0);
+                        menus.index();
                     break;
                 default: {
                     System.out.println("\tPilihan tidak tersedia");
@@ -77,10 +81,9 @@ public class AnggotaController {
         
         finallagi = "KSB/" + tahun + bulan + "/" + id;
         
-        anggota.setBulan_masuk(bulan);
         anggota.setId_anggota(finallagi);
         
-        view.alertLoading();
+        
         
         boolean saved = repos.insert(anggota);
             if (saved) {
@@ -89,5 +92,14 @@ public class AnggotaController {
             } else {
                 view.alertDataNotSaved();
             }
+    }
+    
+    public void update(){
+        List<String> anggotas = new ArrayList<>();
+        Anggota anggota = new Anggota();
+        String ID = view.serachID();
+        
+        anggotas = repos.get(ID);
+        view.showResult(anggotas);
     }
 }

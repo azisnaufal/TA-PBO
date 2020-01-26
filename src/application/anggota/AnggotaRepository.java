@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -32,23 +35,12 @@ public class AnggotaRepository {
         return instance;
     }
     
-    public List<Anggota> get(String params) {
-        List<Anggota> anggotas = new ArrayList<>();
-        
-        String sql = "INSERT INTO Anggota (no_KTP, nama_lengkap, alamat, ttl, nomor_telepon)";
-        
-        try {
-            
-        } catch (Exception e) {
-            
-        }
-        
-        return anggotas;
-    }
-    
     public boolean insert(Anggota anggota) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
         boolean success = false;
-        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon, bulan_daftar) value(?,?,?,?,?,?,?)";
+        
+        String sql = "INSERT INTO Anggota (id_anggota, no_KTP, nama_lengkap, alamat, ttl, nomor_telepon, created_at) value(?,?,?,?,?,?,?)";
         Connection con = db.getConnection();
         
         try {
@@ -59,7 +51,7 @@ public class AnggotaRepository {
             preparedStatement.setString(4, anggota.getAlamat());
             preparedStatement.setString(5, anggota.getTtl());
             preparedStatement.setString(6, anggota.getNomor_telepon());
-            preparedStatement.setString(7, anggota.getBulan_masuk());
+            preparedStatement.setString(7, time);
             
             preparedStatement.execute();
             success = true;
@@ -71,9 +63,6 @@ public class AnggotaRepository {
     
     public int getId_anggota(String nama_bulan, String tahun) {
         int temp = 0;
-
-        // ksb/202001/001 
-        // where id_anggota = "ksb/202001/%" 
         
         String query = "KSB/" + tahun + nama_bulan + "/%";
         
@@ -95,5 +84,35 @@ public class AnggotaRepository {
         return temp;
     }
     
-    
+    public List<String> get(String params) {
+        List<String> anggotas = new ArrayList<>();
+        params = "KSB/" + params;
+        
+        String sql = "SELECT * FROM Anggota WHERE id_anggota = ?";
+        try {
+            Connection con = db.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, params);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+//                Anggota anggota = new Anggota();
+//                anggota.setNama_lengkap(resultSet.getString("no_KTP"));
+//                anggota.setAlamat(resultSet.getString("alamat"));
+//                anggota.setTtl(resultSet.getString("ttl"));
+//                anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
+                
+                anggotas.add(resultSet.getString("id_anggota"));
+                anggotas.add(resultSet.getString("no_KTP"));
+                anggotas.add(resultSet.getString("nama_lengkap"));
+                anggotas.add(resultSet.getString("alamat"));
+                anggotas.add(resultSet.getString("ttl"));
+                anggotas.add(resultSet.getString("nomor_telepon"));
+            }
+            db.close();
+        } catch (Exception e) {
+            System.out.println("\tData tidak ditemukan.");
+        }
+        return anggotas;
+    }
 }
