@@ -26,6 +26,7 @@ public class TarikSimpananView extends BaseView{
         System.out.println("\tTarik Simpanan Sukarela");
         System.out.println("\t=======================");
       
+        //tarikSimpanan.setId_anggota(getSelectedAnggota(daftarAnggota).getId_anggota());
         tarikSimpanan.setId_anggota(getSelectedAnggota(daftarAnggota).getId_anggota());
         System.out.println("");     
        
