@@ -97,6 +97,7 @@ public class LaporanController {
             Row row = sheet.createRow(1);
            
             createCellMergeAndCenter(sheet, row, 1, 1, 1, 2, "ID Anggota", 1);
+            createCell(row, anggota.getId_anggota() + " " + anggota.getNama_lengkap(), 3);
             
             row = sheet.createRow(2);
             createCellMergeAndCenter(sheet, row, 2, 2, 1, 2, "Tahun", 1);
@@ -120,7 +121,6 @@ public class LaporanController {
             
             row = sheet.getRow(4);
             createCellMergeAndCenter(sheet, row, 4, 4, 7, 9, "SALDO SIMPANAN", 7);
-            createCellMergeAndCenter(sheet, row, 4, 6, 10, 10, "PARAF PENGURUS", 10);
             
             row = sheet.getRow(5);
             createCellMergeAndCenter(sheet, row, 5, 6, 7, 7, "SP + SW", 7);
@@ -131,14 +131,18 @@ public class LaporanController {
             int i = 1;
             row = sheet.createRow(7);
             createCell(row, i, 1);
-            createCell(row, anggota.getCreated_at().toString(), 2);
+            if (anggota.getCreated_at() == null){
+                createCell(row, "", 2);
+            }
+            else {
+                createCell(row, anggota.getCreated_at().toString(), 2);
+            }
             createCellCurrency(workbook, row, 100000, 3);
             createCellCurrency(workbook, row, 100000, 6);
             createCellCurrency(workbook, row, 100000, 7);
             createCellCurrency(workbook, row, 100000, 9);
             i++;
-            
-            
+                        
             List<HistorySimpanan> history = repos.getSimpananByIdAnggota(anggota.getId_anggota());
             int saldoSimpananPokokDanWajib = 100000;
             int saldoSimpananSukarela = 0;
@@ -177,7 +181,7 @@ public class LaporanController {
             }
             // create new excel file
             File desktopDir = new File(System.getProperty("user.home"), "Desktop");
-            FileOutputStream fileOut = new FileOutputStream(new File(desktopDir, FILE_KARTU_ANGGOTA + year + " - " + FILE_EXTENSION));
+            FileOutputStream fileOut = new FileOutputStream(new File(desktopDir, FILE_KARTU_ANGGOTA + year + " - " + anggota.getNama_lengkap() + FILE_EXTENSION));
             // write  book ke file
             workbook.write(fileOut);
             // close file

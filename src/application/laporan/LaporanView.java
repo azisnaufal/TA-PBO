@@ -22,7 +22,6 @@ public class LaporanView extends BaseView{
     }
     
     public int frmTahun(){
-        System.out.println("");
         System.out.print("\tMasukkan Tahun Laporan: ");
         int year = scanner.nextInt();
         

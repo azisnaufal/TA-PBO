@@ -32,7 +32,7 @@ public class LaporanRepository extends BaseRepository{
     public List<HistorySimpanan> getSimpananByIdAnggota(String id_anggota){
         List<HistorySimpanan> history = new ArrayList<>();
         String sql = "select poin_simpanan_wajib, poin_simpanan_sukarela, created_at "
-                + "from HistorySimpanan"
+                + "from HistorySimpanan "
                 + "where id_anggota = ?";
         try {
             Connection con = db.getConnection();

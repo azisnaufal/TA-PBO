@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit;
  * @author oazisn
  */
 public class BaseView {
-    
     private static class Loading implements Runnable{
         
         private boolean run = true;
         @Override
         public void run() {
+            run = true;
             for (int i = 0; i < 5; i++) {
                 if (run){
                     try {
@@ -43,6 +43,8 @@ public class BaseView {
     
     protected static Loading task = new Loading();
     protected static Scanner scanner = new Scanner(System.in);
+    protected Thread thread = null;
+
     
     public Anggota getSelectedAnggota(List<Anggota> daftarAnggota ){
         System.out.println("");
@@ -81,8 +83,13 @@ public class BaseView {
         System.out.print("\tSedang memproses");
         scanner.nextLine();
         
-        Thread thread = new Thread(task);
-        thread.start();
+        if (thread == null){
+            thread = new Thread(task);
+            thread.start();
+        }
+        else {
+            task.run();
+        }
         
     }
     
@@ -98,6 +105,7 @@ public class BaseView {
     }
     
     protected void alertDataSaved(String message){
+        System.out.println("");
         System.out.println("\t"+message);
         System.out.println("");
         System.out.println("\tTekan enter untuk melanjutkan...");
@@ -105,6 +113,7 @@ public class BaseView {
     }
     
     protected void alertDataNotSaved(String message) {
+        System.out.println("");
         System.out.println("\t"+message);
         System.out.println("");
         System.out.println("\tTekan enter untuk melanjutkan...");
