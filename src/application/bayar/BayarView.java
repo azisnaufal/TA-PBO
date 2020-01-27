@@ -5,14 +5,14 @@
  */
 package application.bayar;
 
-import static application.base.BaseView.scanner;
 import java.util.List;
 import application.anggota.Anggota;
+import application.base.BaseView;
 /**
  *
  * @author binta
  */
-public class BayarView {
+public class BayarView extends BaseView{
     public Bayar form(List<Anggota> daftarAnggota){
         Bayar bayar = new Bayar();
         
@@ -96,8 +96,8 @@ public class BayarView {
         scanner.nextLine();
     }
 
-    void alertLoading() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+//    void alertLoading() {
+//        throw new UnsupportedOperationException("Not supported yet."); 
+//    }
 }
 

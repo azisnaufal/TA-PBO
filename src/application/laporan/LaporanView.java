@@ -6,8 +6,6 @@
 package application.laporan;
 
 import application.base.BaseView;
-import application.tariksimpanan.*;
-import static application.base.BaseView.scanner;
 
 public class LaporanView extends BaseView{
 
@@ -17,34 +15,26 @@ public class LaporanView extends BaseView{
         printLn("2) Rekapitulasi Poin Tahunan");
         printLn("3) Rekapitulasi Iuran Anggota");
         printLn(" ");
+        printLn("0) Keluar");
         print("Masukkan Pilihan Anda : ");
         int choice = scanner.nextInt();
         
         return choice;
     }
     
-    public void alertId_anggotaNotExist(){
-        printLn("Id Anggota tidak terdaftar");
-        printLn(" ");
-        printLn("Tekan enter untuk melanjutkn");
-        scanner.nextLine();
-    }
-    
-     public void alertDataSaved(){
-        printLn("Laporan berhasil disimpan di Desktop Anda!");
-        printLn(" ");
-        printLn("Tekan enter untuk melanjutkan...");
-        stopLoading();
-        scanner.nextLine();
+    public int frmTahun(){
+        System.out.print("\tMasukkan Tahun Laporan: ");
+        int year = scanner.nextInt();
+        
+        return year;
     }
     
     public void alertDataNotSaved() {
-        printLn("Laporan gagal disimpan!");
-        printLn(" ");
-        printLn("Tekan enter untuk melanjutkan...");
-        stopLoading();
-        scanner.nextLine();
+        super.alertDataNotSaved("Laporan gagal disimpan!");
     }
-
-
+    
+    public void alertDataSaved(){
+        super.alertDataSaved("Laporan berhasil disimpan di Desktop Anda!");
+    }
+    
 }

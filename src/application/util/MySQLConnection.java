@@ -29,7 +29,7 @@ public class MySQLConnection {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection(
-                    "jdbc:mysql://remotemysql.com:3306/" + db + "?autoReconnect=true&useSSL=false",username, password);
+                    "jdbc:mysql://remotemysql.com:3306/" + db + "?autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull",username, password);
         }
         catch(Exception e){
             System.out.println(e);
