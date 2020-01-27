@@ -16,7 +16,6 @@ public class BayarView extends BaseView{
     public Bayar form(List<Anggota> daftarAnggota){
         Bayar bayar = new Bayar();
         
-        int index_anggota = -1;
         int poin_sw;
         int poin_ss;
         
@@ -27,21 +26,9 @@ public class BayarView extends BaseView{
         System.out.println("\t=======================");
         System.out.println();
         
-        tampilDaftarAnggota(daftarAnggota);
-        System.out.println();
+        bayar.setId_anggota(getSelectedAnggota(daftarAnggota).getId_anggota());
         
-        System.out.print("\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
-        while((index_anggota < 0) || (index_anggota > daftarAnggota.size()-1)){
-            index_anggota = scanner.nextInt()-1;  // data pertama => nomor 1 => index == 0 ,
-            if (index_anggota < 0 || index_anggota > daftarAnggota.size()-1){
-                System.out.println("\n\tMaksukan Nomor Dari 1 sampai " + daftarAnggota.size()+"!\n");
-                System.out.print("\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
-            }
-        }
-        bayar.setId_anggota(daftarAnggota.get(index_anggota).getId_anggota());
-        System.out.println("\tAnda memilih : " + (index_anggota + 1) + ". " +
-                daftarAnggota.get(index_anggota).getId_anggota() + "  |  " +
-                daftarAnggota.get(index_anggota).getNama_lengkap()+"\n");
+        System.out.println();
         
         System.out.print("\tMasukkan Jumlah Simpanan Wajib = Rp25.000 * ");
         poin_sw = scanner.nextInt();

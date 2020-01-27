@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package application.bayar;
 
 import java.sql.Timestamp;
@@ -35,10 +35,10 @@ public class BayarController {
             int menu = view.menu();
             switch (menu){
                 case 1:
-                        this.bayar();
+                    this.bayar();
                     break;
                 case 0:
-                        System.exit(0);
+                    System.exit(0);
                     break;
                 default:{
                     System.out.println("Pilihan tidak tersedia");
@@ -49,8 +49,10 @@ public class BayarController {
     }
     
     public void bayar(){
+        view.alertLoading();
         Bayar bayar = view.form(repos.getDaftarAnggota());
-       
+        view.stopLoading();
+        
         Date date = new Date();
         
         long tanggal = date.getTime();
@@ -58,7 +60,7 @@ public class BayarController {
         
         
         bayar.setTanggal(ts);
-  
+        
         boolean saved = repos.insert(bayar);
         if (saved){
             view.alertDataSaved();
