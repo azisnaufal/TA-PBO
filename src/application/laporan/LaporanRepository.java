@@ -29,15 +29,14 @@ public class LaporanRepository extends BaseRepository{
         return instance;
     }
     
-    public List<HistorySimpanan> getSimpananByIdAnggota(String id_anggota){
+    public List<HistorySimpanan> getSimpananByIdAnggota(String id_anggota, int year){
         List<HistorySimpanan> history = new ArrayList<>();
-        String sql = "select poin_simpanan_wajib, poin_simpanan_sukarela, created_at "
-                + "from HistorySimpanan "
-                + "where id_anggota = ?";
+        String sql = "select poin_simpanan_wajib, poin_simpanan_sukarela, created_at from HistorySimpanan where id_anggota = ? and year(created_at) = ?";
         try {
             Connection con = db.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, sql);
+            preparedStatement.setString(1, id_anggota);
+            preparedStatement.setInt(2, year);
             
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -47,7 +46,6 @@ public class LaporanRepository extends BaseRepository{
                 historySimpanan.setSimpanan_wajib(resultSet.getInt("poin_simpanan_wajib"));
                 
                 history.add(historySimpanan);
-                        
             }
             db.close();
         }

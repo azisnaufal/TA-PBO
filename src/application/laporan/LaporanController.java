@@ -143,7 +143,7 @@ public class LaporanController {
             createCellCurrency(workbook, row, 100000, 9);
             i++;
                         
-            List<HistorySimpanan> history = repos.getSimpananByIdAnggota(anggota.getId_anggota());
+            List<HistorySimpanan> history = repos.getSimpananByIdAnggota(anggota.getId_anggota(), year);
             int saldoSimpananPokokDanWajib = 100000;
             int saldoSimpananSukarela = 0;
             int saldoTotal = 0;
@@ -170,7 +170,8 @@ public class LaporanController {
                 createCellCurrency(workbook, row, saldoSimpananSukarela, 8);
                 
                 saldoTotal = saldoTotal + saldoSimpananPokokDanWajib + saldoSimpananSukarela;
-                createCell(row, saldoTotal, 9);
+                createCellCurrency(workbook, row, saldoTotal, 9);
+
                 i++;
             }
             

@@ -15,6 +15,7 @@ public class LaporanView extends BaseView{
         printLn("2) Rekapitulasi Poin Tahunan");
         printLn("3) Rekapitulasi Iuran Anggota");
         printLn(" ");
+        printLn("0) Keluar");
         print("Masukkan Pilihan Anda : ");
         int choice = scanner.nextInt();
         
