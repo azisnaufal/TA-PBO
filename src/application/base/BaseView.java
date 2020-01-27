@@ -57,7 +57,7 @@ public class BaseView {
                     daftarAnggota.get(i).getId_anggota() + "  |  " +
                     daftarAnggota.get(i).getNama_lengkap());
         
-        System.out.print("\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
+        System.out.print("\n\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
         
         while((index_anggota < 0) || (index_anggota > daftarAnggota.size()-1)){
             index_anggota = scanner.nextInt()-1;  // data pertama => nomor 1 => index == 0 ,

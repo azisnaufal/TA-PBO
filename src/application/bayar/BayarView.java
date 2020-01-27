@@ -19,17 +19,13 @@ public class BayarView extends BaseView{
         int poin_sw;
         int poin_ss;
         
-        scanner.nextLine();
-        
         System.out.println("");
         System.out.println("\tBayar Iuran");
         System.out.println("\t=======================");
         System.out.println();
         
         bayar.setId_anggota(getSelectedAnggota(daftarAnggota).getId_anggota());
-        
-        System.out.println();
-        
+
         System.out.print("\tMasukkan Jumlah Simpanan Wajib = Rp25.000 * ");
         poin_sw = scanner.nextInt();
         bayar.setPoin_wajib(poin_sw);
