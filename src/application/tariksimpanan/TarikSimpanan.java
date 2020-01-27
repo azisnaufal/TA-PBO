@@ -15,17 +15,7 @@ public class TarikSimpanan {
     private String id_anggota;
     private int poin_ss;
     private int poin_sukarela;
-    private int jumlah_uang;
     private Timestamp tanggal;
-    private String Tampilan_id_anggota;
-
-    public String getTampilan_id_anggota() {
-        return Tampilan_id_anggota;
-    }
-
-    public void setTampilan_id_anggota(String Tampilan_id_anggota) {
-        this.Tampilan_id_anggota = Tampilan_id_anggota;
-    }
 
     public int getPoin_sukarela() {
         return poin_sukarela;
@@ -58,13 +48,4 @@ public class TarikSimpanan {
     public void setPoin_ss(int poin) {
         this.poin_ss = poin;
     }
-
-    public int getJumlah_uang() {
-        jumlah_uang = poin_ss * 25000;
-        return -jumlah_uang;
-    }
-
-    public void setJumlah_uang(int jumlah_uang) {
-        this.jumlah_uang = jumlah_uang;
-    }    
 }
