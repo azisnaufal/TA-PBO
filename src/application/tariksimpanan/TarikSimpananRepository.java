@@ -5,11 +5,11 @@
  */
 package application.tariksimpanan;
 
+import application.anggota.Anggota;
 import application.util.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class TarikSimpananRepository {
     public boolean insert(TarikSimpanan tarikSimpanan){
         boolean success = false;
         
-        String sql = "INSERT INTO HistorySimpanan (id_anggota, poin_simpanan_sukarela, jumlah_uang, created_at) Value(?,?,?,?)";
+        String sql = "INSERT INTO HistorySimpanan (id_anggota, poin_simpanan_sukarela, created_at) Value(?,?,?)";
         
         Connection con = db.getConnection();
         
@@ -44,8 +44,7 @@ public class TarikSimpananRepository {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, tarikSimpanan.getId_anggota());    
             preparedStatement.setInt(2, tarikSimpanan.getPoin_ss());
-            preparedStatement.setInt(3, tarikSimpanan.getJumlah_uang());
-            preparedStatement.setTimestamp(4, tarikSimpanan.getTanggal());
+            preparedStatement.setTimestamp(3, tarikSimpanan.getTanggal());
             
             preparedStatement.execute();
             
@@ -90,28 +89,26 @@ public class TarikSimpananRepository {
         }
         return success;
     }
-    
-    //public List<TarikSimpanan> get(String id_anggota){
-        //List<TarikSimpanan> tarikSimpanans = new ArrayList<>();
+
+    List<Anggota> getDaftarAnggota() {
+        List<Anggota> daftarAnggota = new ArrayList<>();
         
-        //String sql = "SELECT DISTINC id_anggota FROM HistorySimpanan";
+        String sql = "SELECT * FROM Anggota";
         
-        //try{
-            //Connection con = db.getConnection();
-            //PreparedStatement preparedStatement = con.prepareStatement(sql);
-            //preparedStatement.execute();
-            //ResultSet rs = preparedStatement.executeQuery();
-            //while(rs.next()){
-                //TarikSimpanan tarikSimpanan = new TarikSimpanan();
-                //tarikSimpanan.setTampilan_id_anggota(rs.getString("id_anggota"));
-                
-                //tarikSimpanans.add(tarikSimpanan);
-            //}
+        try{
+            Connection con = db.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
             
-        //}catch (Exception e){
-            //e.printStackTrace();
-        //}
-        
-        //return tarikSimpanans;
-    //}  
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()){
+                rs.getString("id_anggota");
+                rs.getString("nama_lengkap");
+            }
+
+        } catch (Exception e) {
+            System.out.println("\tData tidak ditemukan.");
+        }
+        return daftarAnggota;
+    }
 }
