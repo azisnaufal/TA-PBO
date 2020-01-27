@@ -37,6 +37,7 @@ public class BaseRepository {
                 anggota.setNama_lengkap(resultSet.getString("nama_lengkap"));
                 anggota.setAlamat(resultSet.getString("alamat"));
                 anggota.setTtl(resultSet.getString("ttl"));
+                anggota.setCreated_at(resultSet.getTimestamp("created_at"));
                 anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
                 daftarAnggota.add(anggota);
             }

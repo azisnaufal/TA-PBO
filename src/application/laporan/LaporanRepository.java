@@ -29,6 +29,34 @@ public class LaporanRepository extends BaseRepository{
         return instance;
     }
     
+    public List<HistorySimpanan> getSimpananByIdAnggota(String id_anggota){
+        List<HistorySimpanan> history = new ArrayList<>();
+        String sql = "select poin_simpanan_wajib, poin_simpanan_sukarela, created_at "
+                + "from HistorySimpanan"
+                + "where id_anggota = ?";
+        try {
+            Connection con = db.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, sql);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                HistorySimpanan historySimpanan = new HistorySimpanan();
+                historySimpanan.setCreated_at(resultSet.getTimestamp("created_at"));
+                historySimpanan.setSimpanan_sukarela(resultSet.getInt("poin_simpanan_sukarela"));
+                historySimpanan.setSimpanan_wajib(resultSet.getInt("poin_simpanan_wajib"));
+                
+                history.add(historySimpanan);
+                        
+            }
+            db.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return history;
+    }
+    
     private SumSimpanan getSumSimpanan(int year, String id_anggota){
         String sql = "select sum(poin_simpanan_wajib) as simpanan_wajib, sum(poin_simpanan_sukarela) as simpanan_sukarela\n" +
                 "from HistorySimpanan\n" +

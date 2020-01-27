@@ -51,6 +51,13 @@ public class TarikSimpananView extends BaseView{
         
         return choice;
     }
-   
+
+    public void alertDataNotSaved() {
+        super.alertDataNotSaved("Penarikan Gagal.");
+    }
+    
+    public void alertDataSaved(){
+        super.alertDataSaved("Penarikan Berhasil, Data Tersimpan.");
+    }
 
 }

@@ -77,8 +77,10 @@ public class LaporanController {
     }
     
     public void kartuAnggota(){
+        view.alertLoading();
         List<Anggota> anggotas = repos.getDaftarAnggota();
-        
+        view.stopLoading();
+        Anggota anggota = view.getSelectedAnggota(anggotas);
         int year = view.frmTahun();
         view.alertLoading();
         
@@ -127,9 +129,50 @@ public class LaporanController {
      
             //get data
             int i = 1;
-
+            row = sheet.createRow(7);
+            createCell(row, i, 1);
+            createCell(row, anggota.getCreated_at().toString(), 2);
+            createCellCurrency(workbook, row, 100000, 3);
+            createCellCurrency(workbook, row, 100000, 6);
+            createCellCurrency(workbook, row, 100000, 7);
+            createCellCurrency(workbook, row, 100000, 9);
+            i++;
+            
+            
+            List<HistorySimpanan> history = repos.getSimpananByIdAnggota(anggota.getId_anggota());
+            int saldoSimpananPokokDanWajib = 100000;
+            int saldoSimpananSukarela = 0;
+            int saldoTotal = 0;
+            for (HistorySimpanan historySimpanan : history) {
+                row = sheet.createRow(6 + i);
+                createCell(row, i, 1);
+                createCell(row, historySimpanan.getCreated_at().toString(), 2);
+                
+                int simpananWajib = historySimpanan.getSimpanan_wajib()*25000;
+                saldoSimpananPokokDanWajib += simpananWajib;
+                createCellCurrency(workbook, row, simpananWajib, 3);
+                
+                int simpananSukarela = historySimpanan.getSimpanan_sukarela()*25000;
+                saldoSimpananSukarela += simpananSukarela;
+                if(simpananSukarela > 0){
+                     createCellCurrency(workbook, row, simpananSukarela, 4);
+                }
+                else {
+                     createCellCurrency(workbook, row, simpananSukarela, 5);
+                }
+                
+                createCellCurrency(workbook, row, simpananSukarela + simpananWajib, 6);
+                createCellCurrency(workbook, row, saldoSimpananPokokDanWajib, 7);
+                createCellCurrency(workbook, row, saldoSimpananSukarela, 8);
+                
+                saldoTotal = saldoTotal + saldoSimpananPokokDanWajib + saldoSimpananSukarela;
+                createCell(row, saldoTotal, 9);
+                i++;
+            }
+            
+            
             //auto resize
-            for (i = 0; i < 10; i++){
+            for (i = 0; i <= 10; i++){
                 sheet.autoSizeColumn(i, true);
             }
             // create new excel file

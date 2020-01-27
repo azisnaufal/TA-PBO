@@ -29,4 +29,12 @@ public class LaporanView extends BaseView{
         return year;
     }
     
+    public void alertDataNotSaved() {
+        super.alertDataNotSaved("Laporan gagal disimpan!");
+    }
+    
+    public void alertDataSaved(){
+        super.alertDataSaved("Laporan berhasil disimpan di Desktop Anda!");
+    }
+    
 }

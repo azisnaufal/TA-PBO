@@ -44,13 +44,23 @@ public class BaseView {
     protected static Loading task = new Loading();
     protected static Scanner scanner = new Scanner(System.in);
     
-    public void tampilDaftarAnggota(List<Anggota> daftarAnggota ){
+    public Anggota getSelectedAnggota(List<Anggota> daftarAnggota ){
+        System.out.println("");
         System.out.println("\t\t[Daftar Anggota] \n");
         System.out.println("\t\tNo.\tId Anggota      |  Nama Lengkap");
         for(int i = 0 ; i < daftarAnggota.size();i++)
             System.out.println("\t\t" + (i+1) + ".\t" +
                     daftarAnggota.get(i).getId_anggota() + "  |  " +
                     daftarAnggota.get(i).getNama_lengkap());
+        System.out.println();
+        
+        System.out.print("\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
+        int index_anggota = scanner.nextInt()-1;  // data pertama => nomor 1 => index == 0 ,
+        System.out.println("\tAnda memilih : " + (index_anggota + 1) + ". " +
+                daftarAnggota.get(index_anggota).getId_anggota() + "  |  " +
+                daftarAnggota.get(index_anggota).getNama_lengkap()+"\n");
+        
+        return daftarAnggota.get(index_anggota);
     }
     
     public void header(String params){
@@ -87,15 +97,15 @@ public class BaseView {
         scanner.nextLine();
     }
     
-    public void alertDataSaved(){
-        System.out.println("\tPenarikan Berhasil, Data Tersimpan.");
+    protected void alertDataSaved(String message){
+        System.out.println("\t"+message);
         System.out.println("");
         System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     
-    public void alertDataNotSaved() {
-        System.out.println("\tPenarikan Gagal.");
+    protected void alertDataNotSaved(String message) {
+        System.out.println("\t"+message);
         System.out.println("");
         System.out.println("\tTekan enter untuk melanjutkan...");
         scanner.nextLine();

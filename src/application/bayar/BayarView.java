@@ -27,15 +27,7 @@ public class BayarView extends BaseView{
         System.out.println("\t=======================");
         System.out.println();
         
-        tampilDaftarAnggota(daftarAnggota);
-        System.out.println();
-        
-        System.out.print("\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
-        index_anggota = scanner.nextInt()-1;  // data pertama => nomor 1 => index == 0 ,
-        bayar.setId_anggota(daftarAnggota.get(index_anggota).getId_anggota());
-        System.out.println("\tAnda memilih : " + (index_anggota + 1) + ". " +
-                daftarAnggota.get(index_anggota).getId_anggota() + "  |  " +
-                daftarAnggota.get(index_anggota).getNama_lengkap()+"\n");
+        bayar.setId_anggota(getSelectedAnggota(daftarAnggota).getId_anggota());
         
         System.out.print("\tMasukkan Jumlah Simpanan Wajib = Rp25.000 * ");
         poin_sw = scanner.nextInt();
@@ -60,4 +52,11 @@ public class BayarView extends BaseView{
         return choice;
     }
 
+    public void alertDataNotSaved() {
+        super.alertDataNotSaved("Error, Data gagal disimpan.");
+    }
+    
+    public void alertDataSaved(){
+        super.alertDataSaved("Data telah tersimpan.");
+    }
 }

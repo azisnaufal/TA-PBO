@@ -195,16 +195,12 @@ public class AnggotaView extends BaseView{
         scanner.nextLine();
     }
     
-    public void alertDataSaved(){
-        printLn("Data telah tersimpan.");
-        printLn("");
-        scanner.nextLine();
+    public void alertDataNotSaved() {
+        super.alertDataNotSaved("Error, Data gagal disimpan.");
     }
     
-    public void alertDataNotSaved() {
-        printLn("Error, Data gagal disimpan.");
-        printLn("");
-        scanner.nextLine();
+    public void alertDataSaved(){
+        super.alertDataSaved("Data telah tersimpan.");
     }
     
 }
