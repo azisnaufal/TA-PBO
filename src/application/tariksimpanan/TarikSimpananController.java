@@ -50,7 +50,6 @@ public class TarikSimpananController {
     }
     
     public void tambah(){
-        //TarikSimpanan tarikSimpanan = view.form();
         TarikSimpanan tarikSimpanan = view.form(repos.getDaftarAnggota());
         Date date = new Date();
         
