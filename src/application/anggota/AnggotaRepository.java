@@ -115,4 +115,24 @@ public class AnggotaRepository {
         }
         return anggotas;
     }
+    
+    public boolean update(String params1, String params2, String params3) {
+        String sql = "UPDATE Anggota SET " + params1 + " = ? WHERE id_anggota = ?";
+        Connection con = db.getConnection();
+        boolean success = false;
+        
+        try {
+            PreparedStatement preparedStatement = con.prepareCall(sql);
+            preparedStatement.setString(1, params2);
+            preparedStatement.setString(2, params3);
+            
+            preparedStatement.executeUpdate();
+            success = true;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return success;
+    }
 }

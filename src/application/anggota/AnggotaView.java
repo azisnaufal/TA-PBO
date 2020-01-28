@@ -152,7 +152,7 @@ public class AnggotaView extends BaseView{
     public String serachID() {
         header("Update Anggota");
         print("Masukan ID Anggota : KSB/");
-        String kode = scanner.nextLine();
+        String kode = scannerNextLine.nextLine();
         
         return kode;
     }
@@ -161,17 +161,18 @@ public class AnggotaView extends BaseView{
         int choice = 0;
         
         header("Hasil Pencarian");
-        printLn("1) ID Anggota             : " + params.get(0));
-        printLn("2) No KTP                 : " + params.get(1));
-        printLn("3) Nama Lengkap           : " + params.get(2));
-        printLn("4) Alamat                 : " + params.get(3));
-        printLn("5) Tempat, Tanggal Lahir  : " + params.get(4));
-        printLn("6) No Telepon             : " + params.get(5));
+        printLn("ID Anggota             : " + params.get(0));
+        printLn(" ");
+        printLn("1) No KTP                 : " + params.get(1));
+        printLn("2) Nama Lengkap           : " + params.get(2));
+        printLn("3) Alamat                 : " + params.get(3));
+        printLn("4) Tempat, Tanggal Lahir  : " + params.get(4));
+        printLn("5) No Telepon             : " + params.get(5));
         printLn("");
         do {            
             print("Bagian yang ingin dirubah ? ");
             choice = scanner.nextInt();    
-            if (choice > 6) {
+            if (choice > 5) {
                 printLn("Pilihan tidak tersedia");
             }
         } while (choice > 6);
@@ -184,7 +185,7 @@ public class AnggotaView extends BaseView{
         printLn(params + " sebelumnya : " + params2);
         printLn(" ");
         print(params + " yang baru : ");
-        String temp = scanner.nextLine();
+        String temp = scannerNextLine.nextLine();
         
         return temp;
     }

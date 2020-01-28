@@ -43,6 +43,8 @@ public class BaseView {
     
     protected static Loading task = new Loading();
     protected static Scanner scanner = new Scanner(System.in);
+    protected static Scanner scannerNextLine = new Scanner(System.in);
+    
     protected Thread thread = null;
 
     
