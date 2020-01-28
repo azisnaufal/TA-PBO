@@ -5,13 +5,13 @@
  */
 package application.anggota;
 
+import application.base.BaseRepository;
 import application.util.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -19,9 +19,8 @@ import java.text.SimpleDateFormat;
  *
  * @author Farhan Rafly Fahrezi
  */
-public class AnggotaRepository {
+public class AnggotaRepository extends BaseRepository{
     private static AnggotaRepository instance = null;
-    private MySQLConnection db = null;
     
     private AnggotaRepository() {
         this.db = MySQLConnection.getInstance();
@@ -96,12 +95,7 @@ public class AnggotaRepository {
             
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-//                Anggota anggota = new Anggota();
-//                anggota.setNama_lengkap(resultSet.getString("no_KTP"));
-//                anggota.setAlamat(resultSet.getString("alamat"));
-//                anggota.setTtl(resultSet.getString("ttl"));
-//                anggota.setNomor_telepon(resultSet.getString("nomor_telepon"));
-                
+               
                 anggotas.add(resultSet.getString("id_anggota"));
                 anggotas.add(resultSet.getString("no_KTP"));
                 anggotas.add(resultSet.getString("nama_lengkap"));
@@ -111,7 +105,7 @@ public class AnggotaRepository {
             }
             db.close();
         } catch (Exception e) {
-            System.out.println("\tData tidak ditemukan.");
+            e.printStackTrace();
         }
         return anggotas;
     }

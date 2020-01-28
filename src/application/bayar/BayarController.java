@@ -5,8 +5,10 @@
 */
 package application.bayar;
 
+import application.anggota.Anggota;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 /**
  *
  * @author binta
@@ -41,7 +43,7 @@ public class BayarController {
                     System.exit(0);
                     break;
                 default:{
-                    System.out.println("Pilihan tidak tersedia");
+                    view.alert("Pilihan tidak tersedia");
                     break;
                 }
             }
@@ -50,22 +52,34 @@ public class BayarController {
     
     public void bayar(){
         view.alertLoading();
-        Bayar bayar = view.form(repos.getDaftarAnggota());
+        List<Anggota> anggotas = repos.getDaftarAnggota();
         view.stopLoading();
         
-        Date date = new Date();
-        
-        long tanggal = date.getTime();
-        Timestamp ts = new Timestamp(tanggal);
-        
-        
-        bayar.setTanggal(ts);
-        
-        boolean saved = repos.insert(bayar);
-        if (saved){
-            view.alertDataSaved();
-        }else{
-            view.alertDataNotSaved();
+        if (!anggotas.isEmpty()){
+            Bayar bayar = view.form(anggotas);
+            if (bayar.getPoin_sukarela() > 0 && bayar.getPoin_wajib() > 0){
+                Date date = new Date();
+            
+                long tanggal = date.getTime();
+                Timestamp ts = new Timestamp(tanggal);
+
+
+                bayar.setTanggal(ts);
+
+                boolean saved = repos.insert(bayar);
+                if (saved){
+                    view.alertDataSaved();
+                }else{
+                    view.alertDataNotSaved();
+                }
+            }
+            else {
+                
+            }
+        }
+        else {
+            view.alertDataEmpty("Anggota");
+            index();
         }
     }
 }

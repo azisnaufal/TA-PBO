@@ -59,7 +59,7 @@ public class MenuController{
                     break;
                 }
                 default: {
-                    System.out.println("\tPilihan tidak tersedia!");
+                    view.alert("Pilihan tidak tersedia");
                     break;
                 }
             }

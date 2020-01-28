@@ -1,12 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package application.tariksimpanan;
 
+import application.anggota.Anggota;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -36,13 +38,13 @@ public class TarikSimpananController {
             int menu = view.menu();
             switch (menu){
                 case 1:
-                        this.tambah();
+                    this.tambah();
                     break;
                 case 0:
-                        System.exit(0);
+                    System.exit(0);
                     break;
                 default:{
-                    System.out.println("Pilihan tidak tersedia");
+                    view.alert("Pilihan tidak tersedia");
                     break;
                 }
             }
@@ -50,18 +52,28 @@ public class TarikSimpananController {
     }
     
     public void tambah(){
-        TarikSimpanan tarikSimpanan = view.form(repos.getDaftarAnggota());
-        Date date = new Date();
+        view.alertLoading();
+        List<Anggota> anggotas = repos.getDaftarAnggota();
+        view.stopLoading();
         
-        long tanggal = date.getTime();
-        Timestamp ts = new Timestamp(tanggal);
-        tarikSimpanan.setTanggal(ts);
-        
-        boolean saved = repos.getPoin_sukarela(tarikSimpanan) && repos.insert(tarikSimpanan);
-        if (saved){
-            view.alertDataSaved();
-        }else{
-            view.alertDataNotSaved();
+        if (!anggotas.isEmpty()){
+            TarikSimpanan tarikSimpanan = view.form(anggotas);
+            Date date = new Date();
+            
+            long tanggal = date.getTime();
+            Timestamp ts = new Timestamp(tanggal);
+            tarikSimpanan.setTanggal(ts);
+            
+            boolean saved = repos.getPoin_sukarela(tarikSimpanan) && repos.insert(tarikSimpanan);
+            if (saved){
+                view.alertDataSaved();
+            }else{
+                view.alertDataNotSaved();
+            }
+        }
+        else {
+            view.alertDataEmpty("Anggota");
+            index();
         }
     }
 }

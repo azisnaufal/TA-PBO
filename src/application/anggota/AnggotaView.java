@@ -9,7 +9,6 @@ import application.base.BaseView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 /**
  *
  * @author Farhan Rafly Fahrezi
@@ -197,11 +196,11 @@ public class AnggotaView extends BaseView{
     }
     
     public void alertDataNotSaved() {
-        super.alertDataNotSaved("Error, Data gagal disimpan.");
+        super.alertEnterContinue("Error, Data gagal disimpan.");
     }
     
     public void alertDataSaved(){
-        super.alertDataSaved("Data telah tersimpan.");
+        super.alertEnterContinue("Data telah tersimpan.");
     }
     
 }

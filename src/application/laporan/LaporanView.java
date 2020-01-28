@@ -23,18 +23,18 @@ public class LaporanView extends BaseView{
     }
     
     public int frmTahun(){
-        System.out.print("\tMasukkan Tahun Laporan: ");
+        print("Masukkan Tahun Laporan: ");
         int year = scanner.nextInt();
         
         return year;
     }
     
     public void alertDataNotSaved() {
-        super.alertDataNotSaved("Laporan gagal disimpan!");
+        super.alertEnterContinue("Laporan gagal disimpan!");
     }
     
     public void alertDataSaved(){
-        super.alertDataSaved("Laporan berhasil disimpan di Desktop Anda!");
+        super.alertEnterContinue("Laporan berhasil disimpan di Desktop Anda!");
     }
     
 }

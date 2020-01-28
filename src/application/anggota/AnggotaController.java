@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package application.anggota;
 
 import application.menu.MenuController;
@@ -41,16 +41,16 @@ public class AnggotaController {
             int menu = view.menu();
             switch (menu) {
                 case 1:
-                        this.tambah();
+                    this.tambah();
                     break;
                 case 2:
-                        this.update();
+                    this.update();
                     break;
                 case 0:
-                        menus.index();
+                    menus.index();
                     break;
                 default: {
-                    System.out.println("\tPilihan tidak tersedia");
+                    view.alert("Pilihan tidak tersedia");
                     break;
                 }
             }
@@ -66,7 +66,7 @@ public class AnggotaController {
         String tahun;
         String bulan;
         String finallagi;
-        String id;        
+        String id;
         
         finalid = simpleDateFormat.format(date);
         tahun = finalid.substring(6, 10);
@@ -84,12 +84,12 @@ public class AnggotaController {
         anggota.setId_anggota(finallagi);
         
         boolean saved = repos.insert(anggota);
-            if (saved) {
-                view.alertDataSaved();
-                System.out.println("\tID Anggota anda adalah " + finallagi);
-            } else {
-                view.alertDataNotSaved();
-            }
+        if (saved) {
+            view.alertDataSaved();
+            view.alert("ID Anggota anda adalah " + finallagi);
+        } else {
+            view.alertDataNotSaved();
+        }
     }
     
     public void update(){
@@ -104,49 +104,49 @@ public class AnggotaController {
         
         switch (temp) {
             case 1:
-                    result = view.update("No KTP", anggotas.get(1));
-                    status = repos.update("no_KTP", result, ID);
-                    if (status) {
-                        view.alertDataSaved();
-                    } else {
-                        view.alertDataNotSaved();
-                    }
+                result = view.update("No KTP", anggotas.get(1));
+                status = repos.update("no_KTP", result, ID);
+                if (status) {
+                    view.alertDataSaved();
+                } else {
+                    view.alertDataNotSaved();
+                }
                 break;
             case 2:
-                    result = view.update("Nama Lengkap", anggotas.get(2));
-                    status = repos.update("no_KTP", result, ID);
-                    if (status) {
-                        view.alertDataSaved();
-                    } else {
-                        view.alertDataNotSaved();
-                    }
+                result = view.update("Nama Lengkap", anggotas.get(2));
+                status = repos.update("no_KTP", result, ID);
+                if (status) {
+                    view.alertDataSaved();
+                } else {
+                    view.alertDataNotSaved();
+                }
                 break;
             case 3:
-                    result = view.update("Alamat", anggotas.get(3));
-                    status = repos.update("no_KTP", result, ID);
-                    if (status) {
-                        view.alertDataSaved();
-                    } else {
-                        view.alertDataNotSaved();
-                    }
+                result = view.update("Alamat", anggotas.get(3));
+                status = repos.update("no_KTP", result, ID);
+                if (status) {
+                    view.alertDataSaved();
+                } else {
+                    view.alertDataNotSaved();
+                }
                 break;
-            case 4:    
-                    result = view.update("Tempat, Tanggal Lahir", anggotas.get(4));
-                    status = repos.update("no_KTP", result, ID);
-                    if (status) {
-                        view.alertDataSaved();
-                    } else {
-                        view.alertDataNotSaved();
-                    }
+            case 4:
+                result = view.update("Tempat, Tanggal Lahir", anggotas.get(4));
+                status = repos.update("no_KTP", result, ID);
+                if (status) {
+                    view.alertDataSaved();
+                } else {
+                    view.alertDataNotSaved();
+                }
                 break;
             case 5:
-                    result = view.update("No Telepon", anggotas.get(5));
-                    status = repos.update("no_KTP", result, ID);
-                    if (status) {
-                        view.alertDataSaved();
-                    } else {
-                        view.alertDataNotSaved();
-                    }
+                result = view.update("No Telepon", anggotas.get(5));
+                status = repos.update("no_KTP", result, ID);
+                if (status) {
+                    view.alertDataSaved();
+                } else {
+                    view.alertDataNotSaved();
+                }
                 break;
         }
     }

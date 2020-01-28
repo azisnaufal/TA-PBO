@@ -5,22 +5,19 @@
  */
 package application.tariksimpanan;
 
-import application.anggota.Anggota;
+import application.base.BaseRepository;
 import application.util.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  *
  * @author Ary
  */
-public class TarikSimpananRepository {
+public class TarikSimpananRepository extends BaseRepository{
     private static TarikSimpananRepository instance = null;
-    private MySQLConnection db = null; 
     
     private TarikSimpananRepository(){
         this.db = MySQLConnection.getInstance();
@@ -90,25 +87,4 @@ public class TarikSimpananRepository {
         return success;
     }
 
-    List<Anggota> getDaftarAnggota() {
-        List<Anggota> daftarAnggota = new ArrayList<>();
-        
-        String sql = "SELECT * FROM Anggota";
-        
-        try{
-            Connection con = db.getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            while (rs.next()){
-                rs.getString("id_anggota");
-                rs.getString("nama_lengkap");
-            }
-
-        } catch (Exception e) {
-            System.out.println("\tData tidak ditemukan.");
-        }
-        return daftarAnggota;
-    }
 }

@@ -8,10 +8,6 @@ package application.bayar;
 import application.util.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import application.anggota.Anggota;
 import application.base.BaseRepository;
 
 /**

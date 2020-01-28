@@ -52,10 +52,10 @@ public class BaseView {
         int index_anggota = -1;
 
         System.out.println("");
-        System.out.println("\t\t[Daftar Anggota] \n");
-        System.out.println("\t\tNo.\tId Anggota      |  Nama Lengkap");
+        printLn("\t[Daftar Anggota] \n");
+        printLn("\tNo.\tId Anggota      |  Nama Lengkap");
         for(int i = 0 ; i < daftarAnggota.size();i++)
-            System.out.println("\t\t" + (i+1) + ".\t" +
+            printLn("\t" + (i+1) + ".\t" +
                     daftarAnggota.get(i).getId_anggota() + "  |  " +
                     daftarAnggota.get(i).getNama_lengkap());
         
@@ -65,10 +65,10 @@ public class BaseView {
             index_anggota = scanner.nextInt()-1;  // data pertama => nomor 1 => index == 0 ,
             if (index_anggota < 0 || index_anggota > daftarAnggota.size()-1){
                 System.out.println("\n\tMaksukan Nomor Dari 1 sampai " + daftarAnggota.size()+"!\n");
-                System.out.print("\tMasukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
+                print("Masukkan Nomor Anggota Berdasarkan Daftar Di Atas: ");
             }
         }
-        System.out.println("\tAnda memilih : " + (index_anggota + 1) + ". " +
+        printLn("Anda memilih : " + (index_anggota + 1) + ". " +
                 daftarAnggota.get(index_anggota).getId_anggota() + "  |  " +
                 daftarAnggota.get(index_anggota).getNama_lengkap()+"\n");
         
@@ -78,8 +78,8 @@ public class BaseView {
     
     public void header(String params){
         System.out.println("");
-        System.out.println("\t" + params);
-        System.out.println("\t======================");
+        printLn("" + params);
+        printLn("======================");
     }
     
     public void printLn(String params){
@@ -91,7 +91,7 @@ public class BaseView {
     }
     
     public void alertLoading(){
-        System.out.print("\tSedang memproses");
+        print("Sedang memproses");
         scanner.nextLine();
         
         if (thread == null){
@@ -107,28 +107,21 @@ public class BaseView {
     public void stopLoading(){
         task.stop();
     }
+   
+    public void alert(String message){
+        printLn(""+message);
+    }
     
-    public void alertId_anggotaNotExist(){
-        System.out.println("\tId Anggota tidak terdaftar");
+    protected void alertEnterContinue(String message){
         System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkn");
+        printLn(message);
+        System.out.println("");
+        printLn("Tekan enter untuk melanjutkan...");
         scanner.nextLine();
     }
     
-    protected void alertDataSaved(String message){
-        System.out.println("");
-        System.out.println("\t"+message);
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
-        scanner.nextLine();
+    public void alertDataEmpty(String apanya){
+        alertEnterContinue("Data " + apanya + " Kosong!");
     }
-    
-    protected void alertDataNotSaved(String message) {
-        System.out.println("");
-        System.out.println("\t"+message);
-        System.out.println("");
-        System.out.println("\tTekan enter untuk melanjutkan...");
-        scanner.nextLine();
-    }
-    
+   
 }
