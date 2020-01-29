@@ -148,14 +148,6 @@ public class AnggotaView extends BaseView{
         return choice;
     }
     
-    public String serachID() {
-        header("Update Anggota");
-        print("Masukan ID Anggota : KSB/");
-        String kode = scannerNextLine.nextLine();
-        
-        return kode;
-    }
-    
     public int showResult(List<String> params) {
         int choice = 0;
         

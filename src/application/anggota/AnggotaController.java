@@ -93,61 +93,69 @@ public class AnggotaController {
     }
     
     public void update(){
-        List<String> anggotas = new ArrayList<>();
-        Anggota anggota = new Anggota();
-        String ID = view.serachID();
         String result;
         boolean status;
+        List<String> anggotaList = new ArrayList<>();
         
-        anggotas = repos.get(ID);
-        int temp = view.showResult(anggotas);
+        view.alertLoading();
+        List<Anggota> anggotas = repos.getDaftarAnggota();
+        view.stopLoading();
         
-        switch (temp) {
-            case 1:
-                result = view.update("No KTP", anggotas.get(1));
-                status = repos.update("no_KTP", result, ID);
-                if (status) {
-                    view.alertDataSaved();
-                } else {
-                    view.alertDataNotSaved();
-                }
-                break;
-            case 2:
-                result = view.update("Nama Lengkap", anggotas.get(2));
-                status = repos.update("no_KTP", result, ID);
-                if (status) {
-                    view.alertDataSaved();
-                } else {
-                    view.alertDataNotSaved();
-                }
-                break;
-            case 3:
-                result = view.update("Alamat", anggotas.get(3));
-                status = repos.update("no_KTP", result, ID);
-                if (status) {
-                    view.alertDataSaved();
-                } else {
-                    view.alertDataNotSaved();
-                }
-                break;
-            case 4:
-                result = view.update("Tempat, Tanggal Lahir", anggotas.get(4));
-                status = repos.update("no_KTP", result, ID);
-                if (status) {
-                    view.alertDataSaved();
-                } else {
-                    view.alertDataNotSaved();
-                }
-                break;
-            case 5:
-                result = view.update("No Telepon", anggotas.get(5));
-                status = repos.update("no_KTP", result, ID);
-                if (status) {
-                    view.alertDataSaved();
-                } else {
-                    view.alertDataNotSaved();
-                }
-                break;
+        if (!anggotas.isEmpty()) {
+            Anggota anggota = view.getSelectedAnggota(anggotas);
+            anggotaList = repos.get(anggota.getId_anggota());
+            int temp = view.showResult(anggotaList);
+
+            switch (temp) {
+                case 1:
+                    result = view.update("No KTP", anggotaList.get(1));
+                    status = repos.update("no_KTP", result, anggota.getId_anggota());
+                    if (status) {
+                        view.alertDataSaved();
+                    } else {
+                        view.alertDataNotSaved();
+                    }
+                    break;
+                case 2:
+                    result = view.update("Nama Lengkap", anggotaList.get(2));
+                    status = repos.update("nama_lengkap", result, anggota.getId_anggota());
+                    if (status) {
+                        view.alertDataSaved();
+                    } else {
+                        view.alertDataNotSaved();
+                    }
+                    break;
+                case 3:
+                    result = view.update("Alamat", anggotaList.get(3));
+                    status = repos.update("alamat", result, anggota.getId_anggota());
+                    if (status) {
+                        view.alertDataSaved();
+                    } else {
+                        view.alertDataNotSaved();
+                    }
+                    break;
+                case 4:
+                    result = view.update("Tempat, Tanggal Lahir", anggotaList.get(4));
+                    status = repos.update("ttl", result, anggota.getId_anggota());
+                    if (status) {
+                        view.alertDataSaved();
+                    } else {
+                        view.alertDataNotSaved();
+                    }
+                    break;
+                case 5:
+                    result = view.update("No Telepon", anggotaList.get(5));
+                    status = repos.update("nomor_telepon", result, anggota.getId_anggota());
+                    if (status) {
+                        view.alertDataSaved();
+                    } else {
+                        view.alertDataNotSaved();
+                    }
+                    break;
+            }
+        } else {
+            view.alertDataEmpty("Anggota");
+            index();
         }
     }
 }
