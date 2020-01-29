@@ -29,8 +29,11 @@ public class MenuController{
         return instance;
     }
     
-    public void index(){
+    public void init(){
         view.initialization();
+    }
+    
+    public void index(){
         
         boolean loop = true;
         while(loop){
