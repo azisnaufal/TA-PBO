@@ -85,7 +85,6 @@ public class AnggotaRepository extends BaseRepository{
     
     public List<String> get(String params) {
         List<String> anggotas = new ArrayList<>();
-        params = "KSB/" + params;
         
         String sql = "SELECT * FROM Anggota WHERE id_anggota = ?";
         try {

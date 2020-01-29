@@ -16,6 +16,7 @@ import java.util.List;
 public class AnggotaView extends BaseView{
     
     public Anggota form(){
+        cls();
         Anggota anggota = new Anggota();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -135,6 +136,7 @@ public class AnggotaView extends BaseView{
     }
     
     public int menu() {
+        cls();
         printLn("");
         printLn("Anggota");
         printLn("======================");
@@ -148,17 +150,10 @@ public class AnggotaView extends BaseView{
         return choice;
     }
     
-    public String serachID() {
-        header("Update Anggota");
-        print("Masukan ID Anggota : KSB/");
-        String kode = scannerNextLine.nextLine();
-        
-        return kode;
-    }
-    
     public int showResult(List<String> params) {
         int choice = 0;
         
+        cls();
         header("Hasil Pencarian");
         printLn("ID Anggota             : " + params.get(0));
         printLn(" ");

@@ -6,6 +6,7 @@
 package application.menu;
 
 import application.base.BaseView;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -13,6 +14,8 @@ import application.base.BaseView;
  */
 public class MenuView extends BaseView{
     public int menu(){
+        cls();
+        printLn("Selamat Datang " + System.getProperty("user.name") + " di Aplikasi Pendataan Koperasi Syariah Berkah");
         header("Manu Utama");
         printLn("1) Anggota");
         printLn("2) Tarik Simpanan");
@@ -22,5 +25,47 @@ public class MenuView extends BaseView{
         printLn("0) Keluar");
         print("Pilihan Anda : ");
         return scanner.nextInt();
+    }
+    
+    public void initialization(){
+        cls();
+        printLn(" ");
+        print("Checking System");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(".");
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (Exception e) {
+                
+            }
+        }
+        System.out.println(".");
+        
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            
+        }
+        
+        print("Checking Database");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(".");
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (Exception e) {
+                
+            }
+        }
+        System.out.println(".");
+        
+        printLn(" ");
+        printLn("Anda menggunakan : ");
+        printLn(System.getProperty("os.name") + " " + System.getProperty("os.version") + " " +System.getProperty("os.arch"));
+        printLn("Java version " + System.getProperty("java.version"));
+        
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (Exception e) {
+        }
     }
 }
