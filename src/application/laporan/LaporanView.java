@@ -7,6 +7,10 @@ package application.laporan;
 
 import application.base.BaseView;
 
+/**
+ *
+ * @author oazisn
+ */
 public class LaporanView extends BaseView{
 
     public int menu(){

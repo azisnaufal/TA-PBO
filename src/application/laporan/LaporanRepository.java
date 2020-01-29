@@ -13,6 +13,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author oazisn
+ */
 public class LaporanRepository extends BaseRepository{
     private static LaporanRepository instance = null;
     

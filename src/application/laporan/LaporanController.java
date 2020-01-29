@@ -21,6 +21,10 @@ import org.apache.poi.ss.util.CellUtil;
 import org.apache.poi.xssf.usermodel.XSSFDataFormat;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+/**
+ *
+ * @author oazisn
+ */
 public class LaporanController {
     private static LaporanView view = null;
     private static LaporanController instance = null;
