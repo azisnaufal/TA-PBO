@@ -30,6 +30,8 @@ public class MenuController{
     }
     
     public void index(){
+        view.initialization();
+        
         boolean loop = true;
         while(loop){
             int menu = view.menu();

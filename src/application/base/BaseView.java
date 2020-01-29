@@ -9,6 +9,7 @@ import application.anggota.Anggota;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
 /**
  *
  * @author oazisn
@@ -46,13 +47,20 @@ public class BaseView {
     protected static Scanner scannerNextLine = new Scanner(System.in);
     
     protected Thread thread = null;
-
+    
+    public static void cls() {
+        try {
+            new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+        } catch (Exception e) {
+            
+        }
+    }
     
     public Anggota getSelectedAnggota(List<Anggota> daftarAnggota ){
         int index_anggota = -1;
 
         System.out.println("");
-        printLn("\t[Daftar Anggota] \n");
+        printLn("\tDaftar Anggota \n");
         printLn("\tNo.\tId Anggota      |  Nama Lengkap");
         for(int i = 0 ; i < daftarAnggota.size();i++)
             printLn("\t" + (i+1) + ".\t" +

@@ -28,7 +28,7 @@ public class MySQLConnection {
         String db = "swZn2cZGEU";
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection(
+            con = DriverManager.getConnection(
                     "jdbc:mysql://remotemysql.com:3306/" + db + "?autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull",username, password);
         }
         catch(Exception e){
