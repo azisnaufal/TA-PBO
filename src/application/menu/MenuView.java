@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class MenuView extends BaseView{
     public int menu(){
         cls();
-        printLn("Selamat Datang " + System.getProperty("user.name"));
+        printLn("Selamat Datang " + System.getProperty("user.name") + " di Aplikasi Pendataan Koperasi Syariah Berkah");
         header("Manu Utama");
         printLn("1) Anggota");
         printLn("2) Tarik Simpanan");
@@ -29,6 +29,7 @@ public class MenuView extends BaseView{
     
     public void initialization(){
         cls();
+        printLn(" ");
         print("Checking System");
         for (int i = 0; i < 5; i++) {
             System.out.print(".");
@@ -56,6 +57,11 @@ public class MenuView extends BaseView{
             }
         }
         System.out.println(".");
+        
+        printLn(" ");
+        printLn("Anda menggunakan : ");
+        printLn(System.getProperty("os.name") + " " + System.getProperty("os.version") + " " +System.getProperty("os.arch"));
+        printLn("Java version " + System.getProperty("java.version"));
         
         try {
             TimeUnit.SECONDS.sleep(3);
