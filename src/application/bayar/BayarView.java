@@ -41,7 +41,7 @@ public class BayarView extends BaseView{
         printLn("Iuran Anggota");
         printLn("===============");
         printLn("1) Bayar Iuran");
-        printLn("0) Keluar");
+        printLn("0) Kembali");
         System.out.println(" ");
         print("Masukkan Pilihan Anda : ");
         int choice = scanner.nextInt();

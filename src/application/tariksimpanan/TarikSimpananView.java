@@ -39,7 +39,7 @@ public class TarikSimpananView extends BaseView{
         printLn("Tarik Simpanan");
         printLn("===============");
         printLn("1) Tarik Simpanan Sukarela");
-        printLn("0) Keluar");
+        printLn("0) Kembali");
         System.out.println(" ");
         print("Masukkan Pilihan Anda : ");
         int choice = scanner.nextInt();

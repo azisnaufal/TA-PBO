@@ -6,6 +6,7 @@
 package application.tariksimpanan;
 
 import application.anggota.Anggota;
+import application.menu.MenuController;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -18,10 +19,12 @@ public class TarikSimpananController {
     private static TarikSimpananView view = null;
     private static TarikSimpananController instance = null;
     private static TarikSimpananRepository repos = null;
+    private static MenuController menus = null;
     
     private TarikSimpananController(){
         this.view = new TarikSimpananView();
         this.repos = TarikSimpananRepository.getInstance();
+        this.menus = MenuController.getInstance();
     }
     
     public static TarikSimpananController getInstance(){
@@ -41,7 +44,7 @@ public class TarikSimpananController {
                     this.tambah();
                     break;
                 case 0:
-                    System.exit(0);
+                    menus.index();
                     break;
                 default:{
                     view.alert("Pilihan tidak tersedia");

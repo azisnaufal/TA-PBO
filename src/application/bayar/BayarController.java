@@ -6,6 +6,7 @@
 package application.bayar;
 
 import application.anggota.Anggota;
+import application.menu.MenuController;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -17,10 +18,14 @@ public class BayarController {
     private static BayarView view = null;
     private static BayarController instance = null;
     private static BayarRepository repos = null;
+    private static MenuController menus = null;
+    
     
     private BayarController(){
         BayarController.view = new BayarView();
         BayarController.repos = BayarRepository.getInstance();
+        this.menus = MenuController.getInstance();
+        
     }
     
     public static BayarController getInstance(){
@@ -40,7 +45,7 @@ public class BayarController {
                     this.bayar();
                     break;
                 case 0:
-                    System.exit(0);
+                    menus.index();
                     break;
                 default:{
                     view.alert("Pilihan tidak tersedia");

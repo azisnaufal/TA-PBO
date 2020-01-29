@@ -6,6 +6,7 @@
 package application.laporan;
 
 import application.anggota.Anggota;
+import application.menu.MenuController;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -25,7 +26,8 @@ public class LaporanController {
     private static LaporanController instance = null;
     private static LaporanRepository repos = null;
     private XSSFDataFormat dataFormat;
-    
+    private static MenuController menus = null;
+
     private static final String FILE_EXTENSION = ".xlsx";
     private static final String FILE_REKAP_POIN_TAHUNAN = "Rekap Poin Tahunan - ";
     private static final String FILE_KARTU_ANGGOTA = "Kartu Anggota - ";
@@ -36,6 +38,7 @@ public class LaporanController {
     private LaporanController(){    
         this.view = new LaporanView();
         this.repos = LaporanRepository.getInstance();
+        this.menus = MenuController.getInstance();
     }
     
     public static LaporanController getInstance(){
@@ -61,7 +64,7 @@ public class LaporanController {
                     this.rekapIuranAnggota();
                     break;
                 case 0:
-                    System.exit(0);
+                    menus.index();
                     break;
                 default:{
                     view.alert("Pilihan tidak tersedia");
