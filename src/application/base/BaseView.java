@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  *
- * @author oazisn
+ * @author oazisn & raflyfahrezi
  */
 public class BaseView {
     private static class Loading implements Runnable{
