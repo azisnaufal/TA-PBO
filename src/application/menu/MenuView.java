@@ -16,7 +16,7 @@ public class MenuView extends BaseView{
     public int menu(){
         cls();
         printLn("Selamat Datang " + System.getProperty("user.name") + " di Aplikasi Pendataan Koperasi Syariah Berkah");
-        header("Manu Utama");
+        header("Menu Utama");
         printLn("1) Anggota");
         printLn("2) Tarik Simpanan");
         printLn("3) Cetak Laporan");
