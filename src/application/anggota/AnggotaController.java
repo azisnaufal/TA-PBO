@@ -86,7 +86,9 @@ public class AnggotaController {
         boolean saved = repos.insert(anggota);
         if (saved) {
             view.alertDataSaved();
+            System.out.println("");
             view.alert("ID Anggota anda adalah " + finallagi);
+            view.Confirm();
         } else {
             view.alertDataNotSaved();
         }

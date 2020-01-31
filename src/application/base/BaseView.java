@@ -131,5 +131,19 @@ public class BaseView {
     public void alertDataEmpty(String apanya){
         alertEnterContinue("Data " + apanya + " Kosong!");
     }
-   
+    
+    public void Confirm(){
+        boolean success = false;
+        String stat;
+        do {            
+        print("Ketik 'Y' jika ID Anggota telah anda catat : ");
+        stat = scanner.nextLine();
+        stat = stat.toLowerCase();
+            if (stat.equals("y")) {
+                success = true;
+            } else {
+                success = false;
+            }
+        } while (success == false);
+    }
 }
