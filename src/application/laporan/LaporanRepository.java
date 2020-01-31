@@ -146,7 +146,7 @@ public class LaporanRepository extends BaseRepository{
         if (!sums.isEmpty()){
             int range = year - sums.get(0).getYear();
             
-            for (int i = 0; i < range; i++){
+            for (int i = 0; i <= range; i++){
                 sum += sums.get(i).getPoin();
                 if (sum > 12){
                     sum -= 12;
