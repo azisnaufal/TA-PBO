@@ -23,13 +23,13 @@ public class MySQLConnection {
     }
     
     public Connection getConnection(){
-        String username = "swZn2cZGEU";
-        String password = "kZLGKjOh2Y";
-        String db = "swZn2cZGEU";
+        String username = "root";
+        String password = "";
+        String db = "db_ksb";
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://remotemysql.com:3306/" + db + "?autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull",username, password);
+                    "jdbc:mysql://localhost:3306/" + db + "?autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull",username, password);
         }
         catch(Exception e){
             System.out.println(e);
