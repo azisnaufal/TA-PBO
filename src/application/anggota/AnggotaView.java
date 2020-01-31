@@ -91,8 +91,8 @@ public class AnggotaView extends BaseView{
             tempat_lahir = scanner.nextLine();
             if (tempat_lahir.equals("")) {
                 printLn("Tempat lahir tidak boleh kosong");
-            } else if (tempat_lahir.length() <= 4) {
-                printLn("Tempat lahir minimal 5 digit");
+            } else if (tempat_lahir.length() <= 3) {
+                printLn("Tempat lahir minimal 4 digit");
             } else {
                 tempat_lahir_validasi = true;
             }
