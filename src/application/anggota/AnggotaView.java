@@ -42,7 +42,7 @@ public class AnggotaView extends BaseView{
         
         //KTP
         do {            
-            print("Masukan No KTP : ");
+            print("Masukan No KTP                     : ");
             no_ktp = scanner.nextLine();
             if (no_ktp.equals("")) {
                 printLn("No KTP tidak boleh kosong!");
@@ -58,7 +58,7 @@ public class AnggotaView extends BaseView{
         
         //Nama Lengkap
         do {            
-            print("Masukan Nama Lengkap : ");
+            print("Masukan Nama Lengkap               : ");
             nama = scanner.nextLine();
             if (nama.equals("")) {
                 printLn("Nama tidak boleh kosong!");
@@ -72,7 +72,7 @@ public class AnggotaView extends BaseView{
         
         //Alamat
         do {            
-            print("Masukan Alamat : ");
+            print("Masukan Alamat                     : ");
             alamat = scanner.nextLine();
             if (alamat.equals("")) {
                 printLn("Alamat tidak boleh kosong");
@@ -87,7 +87,7 @@ public class AnggotaView extends BaseView{
         
         //Tempat Lahir
         do {            
-            print("Masukan Tempat Lahir : ");
+            print("Masukan Tempat Lahir               : ");
             tempat_lahir = scanner.nextLine();
             if (tempat_lahir.equals("")) {
                 printLn("Tempat lahir tidak boleh kosong");
@@ -120,7 +120,7 @@ public class AnggotaView extends BaseView{
         
         //No Telepon
         do {            
-            print("Masukan No Telepon : ");
+            print("Masukan No Telepon                 : ");
             no_telepon = scanner.next();
             if (no_telepon.equals("")) {
                 printLn("No telepon tidak boleh kosong");
@@ -155,7 +155,7 @@ public class AnggotaView extends BaseView{
         
         cls();
         header("Hasil Pencarian");
-        printLn("ID Anggota             : " + params.get(0));
+        printLn("ID Anggota                : " + params.get(0));
         printLn(" ");
         printLn("1) No KTP                 : " + params.get(1));
         printLn("2) Nama Lengkap           : " + params.get(2));
